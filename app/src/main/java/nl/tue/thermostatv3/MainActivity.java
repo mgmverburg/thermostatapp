@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 /**
  * Created by s148494 on 7-6-2015.
- * test comment
  */
 public class MainActivity extends ActionBarActivity {
 

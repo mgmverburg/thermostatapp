@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\s148494\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0 rc2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\ThermostatV3\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-61ac0b32e2a3096ed8e87dbd3d55a8b0381f34ac.jar" />
+    </item>
+    <item
+        jar="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\ThermostatV3\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0 rc2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\ThermostatV3\app\build\intermediates\pre-dexed\debug\classes-e08575335bbf06adbe3ad272bc96b14b88f01406.jar" />
+    </item>
+    <item
+        jar="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\ThermostatV3\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0 rc2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\ThermostatV3\app\build\intermediates\pre-dexed\debug\classes-4ee85a2803f4d3a4c7c01de14b3e0fbebe4836fe.jar" />
+    </item>
+    <item
+        jar="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\ThermostatV3\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0 rc2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\ThermostatV3\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-83a232c49c7f1918c08c71e20191e47cda86f410.jar" />
+    </item>
+
+</items>

@@ -19,6 +19,7 @@
             android:label="@string/week_overview">
         </activity>
 
+        <!-- !-->
         <!-- TEMPLATE: this is what needs to be added in the manifest for a new blank page with correct title
         <activity
             android:name=".[ActivityName]"
