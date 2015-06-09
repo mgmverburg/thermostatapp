@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ThermostatV3</string>
+    <string name="main_page">Heating control</string>
+    <string name="week_overview">Week overview</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+</resources>
