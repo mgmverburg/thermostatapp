@@ -62,7 +62,8 @@ public class MainActivity extends ActionBarActivity {
                     Intent intent = new Intent(view.getContext(), WeekOverview.class);
                     startActivity(intent);
                 } else if (buttonString.startsWith("Day/night temperature")) {
-                    
+                    Intent intent = new Intent(view.getContext(), DayNight.class);
+                    startActivity(intent);
                 } else if (buttonString.startsWith("Settings")) {
 
                 } else {   //then it must be the help button
