@@ -14,10 +14,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 /**
- * Created by s148494 on 8-6-2015.
+ * Created by s143243 on 9-6-2015.
  */
-public class WeekOverview extends ActionBarActivity {
-
+public class DayNight extends ActionBarActivity {
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private MySimpleArrayAdapter mAdapter;
@@ -27,9 +26,10 @@ public class WeekOverview extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.week_overview);
 
-        mDrawerList = (ListView)findViewById(R.id.navList);mDrawerLayout = (DrawerLayout)findViewById(R.id.week_overview);
+        setContentView(R.layout.day_night);
+
+        mDrawerList = (ListView)findViewById(R.id.navList);mDrawerLayout = (DrawerLayout)findViewById(R.id.DayNight);
         mActivityTitle = getTitle().toString();
 
         addDrawerItems();
@@ -50,18 +50,16 @@ public class WeekOverview extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-
-               TextView textView = (TextView) view.findViewById(R.id.text1);
+                TextView textView = (TextView) view.findViewById(R.id.text1);
                 String buttonString = (String)textView.getText();
                 if (buttonString.startsWith("Heating control") ){
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
-                     startActivity(intent);
+                    startActivity(intent);
                 } else if (buttonString.startsWith("Week program")) {
                     Intent intent = new Intent(view.getContext(), WeekOverview.class);
                     startActivity(intent);
                 } else if (buttonString.startsWith("Day/night temperature")) {
-                    Intent intent = new Intent(view.getContext(), DayNight.class);
-                    startActivity(intent);
+
                 } else if (buttonString.startsWith("Settings")) {
 
                 } else {   //then it must be the help button
@@ -69,12 +67,7 @@ public class WeekOverview extends ActionBarActivity {
                 }
             }
         });
-        //mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        //@Override
-        //public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //  Toast.makeText(MainActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
-        //  }
-        //});
+
     }
 
     private void setupDrawer() {
@@ -126,11 +119,6 @@ public class WeekOverview extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        //  if (id == R.id.action_settings) {
-        //    return true;
-        //}
-
         // Activate the navigation drawer toggle
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
@@ -139,3 +127,4 @@ public class WeekOverview extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
