@@ -40,7 +40,7 @@ public class WeekOverview extends ActionBarActivity {
     }
 
     private void addDrawerItems() {
-        String[] osArray = { "Heating control", "Week program", "Day/night temperature", "Settings", "Help" };
+        String[] osArray = { "Home", "Week program", "Day/night temperature", "Settings", "Help" };
         mAdapter = new MySimpleArrayAdapter(this, osArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -53,7 +53,7 @@ public class WeekOverview extends ActionBarActivity {
 
                TextView textView = (TextView) view.findViewById(R.id.text1);
                 String buttonString = (String)textView.getText();
-                if (buttonString.startsWith("Heating control") ){
+                if (buttonString.startsWith("Home") ){
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
                      startActivity(intent);
                 } else if (buttonString.startsWith("Week program")) {

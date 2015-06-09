@@ -33,12 +33,12 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
         textView.setText(values[position]);
         // Change the icon for Windows and iPhone
         String s = values[position];
-        if (s.startsWith("Heating control")) {
-            imageView.setImageResource(R.drawable.ic_settings);
+        if (s.startsWith("Home")) {
+            imageView.setImageResource(R.drawable.ic_home);
         } else if (s.startsWith("Week program")) {
-            imageView.setImageResource(R.drawable.ic_settings);
+            imageView.setImageResource(R.drawable.ic_week_program);
         } else if (s.startsWith("Day/night temperature")) {
-            imageView.setImageResource(R.drawable.ic_settings);
+            imageView.setImageResource(R.mipmap.ic_daynight);
         } else if (s.startsWith("Settings")) {
             imageView.setImageResource(R.drawable.ic_settings);
         } else {
