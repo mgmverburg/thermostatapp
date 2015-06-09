@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="nl.tue.thermostatv3">
+
+    <application android:allowBackup="true" android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher" android:theme="@style/AppThemeDefault">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/main_page"
+            android:theme="@style/AppTheme"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            </activity>
+        <activity
+            android:name=".WeekOverview"
+            android:theme="@style/AppTheme"
+            android:label="@string/week_overview">
+        </activity>
+
+        <!-- TEMPLATE: this is what needs to be added in the manifest for a new blank page with correct title
+        <activity
+            android:name=".[ActivityName]"
+            android:theme="@style/AppTheme"
+            android:label="@string/[activity_name]"  (the label will be the title displayed in the top. When adding this line you also need to add a line with the actual name in the strings.xml file under resources)
+        !-->
+    </application>
+
+</manifest>

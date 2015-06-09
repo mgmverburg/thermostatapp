@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowNoTitle">true</item> <!-- Hides the Action Bar -->
+        <item name="android:windowFullscreen">true</item> <!-- Hides the status bar -->
+        <item name="android:background">@color/background_color_header</item>
+    </style>
+</resources>
