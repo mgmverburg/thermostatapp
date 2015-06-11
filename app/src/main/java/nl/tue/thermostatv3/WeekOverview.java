@@ -16,13 +16,15 @@ import android.widget.TextView;
 /**
  * Created by s148494 on 8-6-2015.
  */
-public class WeekOverview extends ActionBarActivity {
+public class WeekOverview extends ActionBarActivity  {
 
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private MySimpleArrayAdapter mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
+    private TextView text;
+    TextView btnMonday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,23 @@ public class WeekOverview extends ActionBarActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+
+        btnMonday = (TextView) findViewById(R.id.day_tuesday);
+        btnMonday.setFocusableInTouchMode(true);
+
+        btnMonday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnMonday.setFocusableInTouchMode(false);
+                btnMonday.setFocusable(false);
+            }
+        });
+
+
+
+
+
     }
 
     private void addDrawerItems() {
@@ -138,4 +157,6 @@ public class WeekOverview extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -4,93 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/week_overview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_color_content">
 
     <!-- The first child in the layout is for the main Activity UI-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context=".WeekOverview"
-        android:background="@color/background_color_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mon"
-                android:id="@+id/day_monday"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="41dp"
-                android:layout_marginStart="41dp" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tue"
-                android:id="@+id/day_tuesday"
-                android:layout_alignParentStart="true"
-                android:layout_toEndOf="@id/day_monday"
-                />
-
-           <!-- <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wed"
-                android:id="@+id/day_wednesday"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thu"
-                android:id="@+id/day_thursday"
-                android:layout_below="@+id/day_wednesday"
-                android:layout_toEndOf="@+id/day_monday" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fri"
-                android:id="@+id/day_friday"
-                android:layout_below="@+id/day_thursday"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="43dp" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sat"
-                android:id="@+id/day_saturday"
-                android:layout_below="@+id/day_thursday"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="43dp" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sun"
-                android:id="@+id/day_sunday"
-                android:layout_alignTop="@+id/day_thursday"
-                android:layout_toEndOf="@+id/day_tuesday"
-                android:layout_marginStart="59dp" />!-->
-        </LinearLayout>
 
 
-    </RelativeLayout>
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_color_content"
+                android:gravity="center_horizontal"
+                tools:context=".WeekOverview"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    style="@style/btnday"
+                    android:button="@android:color/transparent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="MON"
+                    android:id="@+id/day_monday"
+                    android:layout_gravity="center_horizontal" />
+
+                <RadioButton
+                    style="@style/btnday"
+                    android:button="@android:color/transparent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="TUE"
+                    android:id="@+id/day_tuesday"
+                    android:layout_gravity="center_horizontal" />
+
+                <RadioButton
+                    style="@style/btnday"
+                    android:button="@android:color/transparent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="WED"
+                    android:id="@+id/day_wednesday"
+                    android:layout_gravity="center_horizontal"
+                        />
+
+                <RadioButton
+                    style="@style/btnday"
+                    android:button="@android:color/transparent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="THU"
+                    android:id="@+id/day_thursday"
+                    android:layout_gravity="center_horizontal"/>
+
+                <RadioButton
+                    style="@style/btnday"
+                    android:button="@android:color/transparent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="FRI"
+                    android:id="@+id/day_friday"
+                    android:paddingLeft="9dp"
+                    android:paddingRight="9dp"
+                    android:layout_gravity="center_horizontal" />
+
+                <RadioButton
+                    style="@style/btnday"
+                    android:button="@android:color/transparent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="SAT"
+                    android:id="@+id/day_saturday"
+                    android:layout_gravity="center_horizontal"/>
+
+                <RadioButton
+                    style="@style/btnday"
+                    android:button="@android:color/transparent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="SUN"
+                    android:id="@+id/day_sunday"
+                    android:layout_gravity="center_horizontal" />
+
+            </RadioGroup>
+
+
+
+
 
         <!-- Side navigation drawer UI -->
         <ListView
