@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.thermostatapp.util.*;
+
 /**
  * Created by s143243 on 9-6-2015.
  */
@@ -24,10 +26,11 @@ public class DayNight extends ActionBarActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
 
-    int vtempDay = 20;
-    int vtempNight = 10;
-    int lowerBound = 5;
-    int upperBound = 30;
+    double vtempDay = 20;
+    double vtempNight = 10;
+    double lowerBound = 5;
+    double upperBound = 30;
+
     TextView tempDay;
     TextView tempNight;
 
@@ -48,6 +51,10 @@ public class DayNight extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        //Set heatingsystem address
+        HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/39";
+        HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
+
         //Declare buttons/textviews
         Button bPlusDay = (Button)findViewById(R.id.bPlusDay);
         Button bPlusNight = (Button)findViewById(R.id.bPlusNight);
@@ -56,48 +63,114 @@ public class DayNight extends ActionBarActivity {
         tempDay = (TextView)findViewById(R.id.tempDay);
         tempNight = (TextView)findViewById(R.id.tempNight);
 
-        //Give textViews values
-        tempDay.setText(vtempDay + " \u2103");
-        tempNight.setText(vtempNight + " \u2103");
+        //Give textViews values from server
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    vtempDay = Double.parseDouble(HeatingSystem.get("dayTemperature"));
+                    vtempNight = Double.parseDouble(HeatingSystem.get("nightTemperature"));
+                    tempDay.post(new Runnable() {
+                        public void run() {
+                            tempDay.setText(vtempDay + " \u2103");
+                        }
+                    });
+                    tempNight.post(new Runnable() {
+                        public void run() {
+                            tempNight.setText(vtempNight + " \u2103");
+                        }
+                    });
+                } catch (Exception e) {
+                    System.err.println("Error from getdata" + e);
+                }
+            }
+        }).start();
 
         //Button listeners
         bPlusDay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(vtempDay < upperBound) {
-                    vtempDay++;
-                    tempDay.setText(vtempDay + " \u2103");
-                }
-            }
-        });
-
-        bPlusNight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(vtempNight < upperBound) {
-                    vtempNight++;
-                    tempNight.setText(vtempNight + " \u2103");
-                }
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            vtempDay = (double)Math.round((vtempDay + 0.1)*10)/10;
+                            HeatingSystem.put("dayTemperature", Double.toString(vtempDay));
+                            tempDay.post(new Runnable() {
+                                public void run() {
+                                    tempDay.setText(vtempDay + " \u2103");
+                                }
+                            });
+                        } catch (Exception e) {
+                            vtempDay = vtempDay - 0.1;
+                            System.err.println("Error from getdata" + e);
+                        }
+                    }
+                }).start();
             }
         });
 
         bMinusDay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(vtempDay > lowerBound) {
-                    vtempDay--;
-                    tempDay.setText(vtempDay + " \u2103");
-                }
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            vtempDay = (double)Math.round((vtempDay - 0.1)*10)/10;
+                            HeatingSystem.put("dayTemperature", Double.toString(vtempDay));
+                            tempDay.post(new Runnable() {
+                                public void run() {
+                                    tempDay.setText(vtempDay + " \u2103");
+                                }
+                            });
+                        } catch (Exception e) {
+                            vtempDay = vtempDay - 0.1;
+                            System.err.println("Error from getdata" + e);
+                        }
+                    }
+                }).start();
+            }
+        });
+
+        bPlusNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            vtempNight = (double)Math.round((vtempNight + 0.1)*10)/10;
+                            HeatingSystem.put("nightTemperature", Double.toString(vtempNight));
+                            tempNight.post(new Runnable() {
+                                public void run() {
+                                    tempNight.setText(vtempNight + " \u2103");
+                                }
+                            });
+                        } catch (Exception e) {
+                            vtempNight = vtempNight - 0.1;
+                            System.err.println("Error from getdata" + e);
+                        }
+                    }
+                }).start();
             }
         });
 
         bMinusNight.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(vtempNight > lowerBound) {
-                    vtempNight--;
-                    tempNight.setText(vtempNight + " \u2103");
-                }
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            vtempNight = (double)Math.round((vtempNight - 0.1)*10)/10;
+                            HeatingSystem.put("nightTemperature", Double.toString(vtempNight));
+                            tempNight.post(new Runnable() {
+                                public void run() {
+                                    tempNight.setText(vtempNight + " \u2103");
+                                }
+                            });
+                        } catch (Exception e) {
+                            vtempNight = vtempNight - 0.1;
+                            System.err.println("Error from getdata" + e);
+                        }
+                    }
+                }).start();
             }
         });
 
