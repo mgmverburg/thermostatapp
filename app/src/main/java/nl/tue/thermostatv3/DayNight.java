@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,10 +24,19 @@ public class DayNight extends ActionBarActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
 
+    int vtempDay = 20;
+    int vtempNight = 10;
+    int lowerBound = 5;
+    int upperBound = 30;
+    TextView tempDay;
+    TextView tempNight;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        //Menu
         setContentView(R.layout.day_night);
 
         mDrawerList = (ListView)findViewById(R.id.navList);mDrawerLayout = (DrawerLayout)findViewById(R.id.DayNight);
@@ -37,6 +47,60 @@ public class DayNight extends ActionBarActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        //Declare buttons/textviews
+        Button bPlusDay = (Button)findViewById(R.id.bPlusDay);
+        Button bPlusNight = (Button)findViewById(R.id.bPlusNight);
+        Button bMinusDay = (Button)findViewById(R.id.bMinusDay);
+        Button bMinusNight = (Button)findViewById(R.id.bMinusNight);
+        tempDay = (TextView)findViewById(R.id.tempDay);
+        tempNight = (TextView)findViewById(R.id.tempNight);
+
+        //Give textViews values
+        tempDay.setText(vtempDay + " \u2103");
+        tempNight.setText(vtempNight + " \u2103");
+
+        //Button listeners
+        bPlusDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(vtempDay < upperBound) {
+                    vtempDay++;
+                    tempDay.setText(vtempDay + " \u2103");
+                }
+            }
+        });
+
+        bPlusNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(vtempNight < upperBound) {
+                    vtempNight++;
+                    tempNight.setText(vtempNight + " \u2103");
+                }
+            }
+        });
+
+        bMinusDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(vtempDay > lowerBound) {
+                    vtempDay--;
+                    tempDay.setText(vtempDay + " \u2103");
+                }
+            }
+        });
+
+        bMinusNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(vtempNight > lowerBound) {
+                    vtempNight--;
+                    tempNight.setText(vtempNight + " \u2103");
+                }
+            }
+        });
+
     }
 
     private void addDrawerItems() {
