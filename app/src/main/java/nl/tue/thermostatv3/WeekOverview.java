@@ -10,8 +10,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import org.thermostatapp.util.HeatingSystem;
+import org.thermostatapp.util.Switch;
+import org.thermostatapp.util.WeekProgram;
+
+import java.util.ArrayList;
 
 /**
  * Created by s148494 on 8-6-2015.
@@ -24,7 +33,12 @@ public class WeekOverview extends ActionBarActivity  {
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
     private TextView text;
-    TextView btnMonday;
+    RadioGroup groupWeek;
+    RadioButton rbSelected;
+    TextView textSwitches[];
+    WeekProgram wpg;
+    ArrayList<Switch> switches;
+    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,22 +54,116 @@ public class WeekOverview extends ActionBarActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        //Set heatingsystem address
+        HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/39";
+        HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
 
-        btnMonday = (TextView) findViewById(R.id.day_tuesday);
-        btnMonday.setFocusableInTouchMode(true);
+        //Put textviews into array
+        textSwitches = new TextView[10];
+        textSwitches[0] = (TextView)findViewById(R.id.switch1);
+        textSwitches[1] = (TextView)findViewById(R.id.switch2);
+        textSwitches[2] = (TextView)findViewById(R.id.switch3);
+        textSwitches[3] = (TextView)findViewById(R.id.switch4);
+        textSwitches[4] = (TextView)findViewById(R.id.switch5);
+        textSwitches[5] = (TextView)findViewById(R.id.switch6);
+        textSwitches[6] = (TextView)findViewById(R.id.switch7);
+        textSwitches[7] = (TextView)findViewById(R.id.switch8);
+        textSwitches[8] = (TextView)findViewById(R.id.switch9);
+        textSwitches[9] = (TextView)findViewById(R.id.switch10);
 
-        btnMonday.setOnClickListener(new View.OnClickListener() {
+        //Radiogroup listener
+        //Gets all switches of the selected day from the server.
+        groupWeek = (RadioGroup)findViewById(R.id.radiogroup_week);
+        groupWeek.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                btnMonday.setFocusableInTouchMode(false);
-                btnMonday.setFocusable(false);
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                rbSelected = (RadioButton)findViewById(checkedId);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+                            wpg = HeatingSystem.getWeekProgram();
+                            String selectedDay = (String)rbSelected.getText();
+                            String day = toDay(selectedDay);
+                            switches = wpg.getSwitches(day);
+                            textSwitches[0].post(new Runnable(){
+                                public void run() {
+                                    //Add this to other textviews
+                                    String time =  switches.get(1).getTime();
+                                    String state = (switches.get(1).getState()) ? "On" : "Off";
+                                    String type = switches.get(1).getType();
+                                    textSwitches[0].setText(type + " - Time: " + time + "  - State: " + state);
+                                }
+                            });
+                            textSwitches[1].post(new Runnable(){
+                                public void run() {
+                                    textSwitches[1].setText(switches.get(1).getTime());
+                                }
+                            });
+                            textSwitches[2].post(new Runnable() {
+                                public void run() {
+                                    textSwitches[2].setText(switches.get(2).getTime());
+                                }
+                            });
+                            textSwitches[3].post(new Runnable() {
+                                public void run() {
+                                    textSwitches[3].setText(switches.get(3).getTime());
+                                }
+                            });
+                            textSwitches[4].post(new Runnable() {
+                                public void run() {
+                                    textSwitches[4].setText(switches.get(4).getTime());
+                                }
+                            });
+                            textSwitches[5].post(new Runnable() {
+                                public void run() {
+                                    textSwitches[5].setText(switches.get(5).getTime());
+                                }
+                            });
+                            textSwitches[6].post(new Runnable() {
+                                public void run() {
+                                    textSwitches[6].setText(switches.get(6).getTime());
+                                }
+                            });
+                            textSwitches[7].post(new Runnable() {
+                                public void run() {
+                                    textSwitches[7].setText(switches.get(7).getTime());
+                                }
+                            });
+                            textSwitches[8].post(new Runnable() {
+                                public void run() {
+                                    textSwitches[8].setText(switches.get(8).getTime());
+                                }
+                            });
+                            textSwitches[9].post(new Runnable() {
+                                public void run() {
+                                    textSwitches[9].setText(switches.get(9).getTime());
+                                }
+                            });
+
+                        } catch (Exception e){
+                            System.err.println("Error from getdata" + e);
+                        }
+                    }
+                }).start();
             }
         });
 
+    }
 
-
-
-
+    //Converts day abbreviaton to full day name
+    public String toDay(String day){
+        switch(day){
+            case "Mon": day = "Monday"; break;
+            case "Tue": day = "Tuesday"; break;
+            case "Wed": day = "Wednesday"; break;
+            case "Thu": day = "Thursday"; break;
+            case "Fri": day = "Friday"; break;
+            case "Sat": day = "Saturday"; break;
+            case "Sun": day = "Sunday"; break;
+            default: day = "Monday"; break;
+        }
+        return day;
     }
 
     private void addDrawerItems() {

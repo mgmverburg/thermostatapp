@@ -16,7 +16,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context=".[ActivityName]"
+        tools:context=".DayNight"
         android:background="@color/background_color_content">
 
 
@@ -76,9 +76,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text=""
             android:id="@+id/tempDay"
-            android:layout_alignTop="@+id/textView2"
-            android:layout_toEndOf="@+id/textView3"
-            android:layout_marginStart="93dp"
+            android:layout_below="@+id/bPlusDay"
+            android:layout_toRightOf="@+id/iconDay"
+            android:layout_marginLeft="170dp"
             android:background="@color/background_color_content"/>
 
         <TextView
@@ -87,8 +87,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text=""
             android:id="@+id/tempNight"
-            android:layout_alignBottom="@+id/imageView"
-            android:layout_alignStart="@+id/tempDay"
+            android:layout_toRightOf="@+id/imageView"
+            android:layout_marginLeft="170dp"
+            android:layout_below="@+id/bPlusNight"
             android:background="@color/background_color_content"/>
 
         <Button

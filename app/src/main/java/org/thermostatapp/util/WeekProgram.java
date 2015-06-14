@@ -48,6 +48,14 @@ public class WeekProgram {
         set_durations();
     }
 
+    //Added by Stan Roelofs on 14-6-2015, not safe.
+    //Returns ArrayList of all switches of one day.
+    public ArrayList<Switch> getSwitches(String day){
+        ArrayList<Switch> daySwitches = new ArrayList<Switch>();
+        daySwitches = this.data.get(day);
+        return daySwitches;
+    }
+
     public int get_nr_switches_active(int i) {
         return this.nr_switches_active[i];
     }

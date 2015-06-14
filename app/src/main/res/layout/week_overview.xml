@@ -9,17 +9,25 @@
 
     <!-- The first child in the layout is for the main Activity UI-->
 
-
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".WeekOverview"
+        android:background="@color/background_color_content"
+        android:nestedScrollingEnabled="false">
 
             <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
                 android:background="@color/background_color_content"
                 android:gravity="center_horizontal"
                 tools:context=".WeekOverview"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/radiogroup_week">
 
                 <RadioButton
                     style="@style/btnday"
@@ -89,9 +97,106 @@
 
             </RadioGroup>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/switch1"
+            android:background="@color/background_color_content"
+            android:layout_marginTop="60dp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/switch2"
+            android:layout_below="@+id/switch1"
+            android:background="@color/background_color_content"
+            android:layout_marginTop="15dp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/switch3"
+            android:layout_below="@+id/switch2"
+            android:background="@color/background_color_content"
+            android:layout_marginTop="15dp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/switch4"
+            android:layout_below="@+id/switch3"
+            android:background="@color/background_color_content"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/switch5"
+            android:layout_below="@+id/switch4"
+            android:background="@color/background_color_content"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/switch6"
+            android:layout_below="@+id/switch5"
+            android:background="@color/background_color_content"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/switch7"
+            android:layout_below="@+id/switch6"
+            android:background="@color/background_color_content"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/switch8"
+            android:layout_below="@+id/switch7"
+            android:background="@color/background_color_content"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/switch9"
+            android:layout_below="@+id/switch8"
+            android:background="@color/background_color_content"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/switch10"
+            android:layout_below="@+id/switch9"
+            android:background="@color/background_color_content"
+            android:layout_marginTop="15dp"/>
+
+    </RelativeLayout>
 
         <!-- Side navigation drawer UI -->
         <ListView

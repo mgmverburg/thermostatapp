@@ -34,6 +34,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
         // Change the icon for Windows and iPhone
         String s = values[position];
         if (s.startsWith("Home")) {
+            //Add home icon here once we find one
             imageView.setImageResource(R.drawable.ic_menu);
         } else if (s.startsWith("Week program")) {
             imageView.setImageResource(R.drawable.ic_week_program);
