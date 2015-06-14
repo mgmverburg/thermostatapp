@@ -114,7 +114,7 @@
             android:id="@+id/switch2"
             android:layout_below="@+id/switch1"
             android:background="@color/background_color_content"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="21dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
             android:id="@+id/switch3"
             android:layout_below="@+id/switch2"
             android:background="@color/background_color_content"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="21dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
             android:id="@+id/switch4"
             android:layout_below="@+id/switch3"
             android:background="@color/background_color_content"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="21dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -144,7 +144,7 @@
             android:id="@+id/switch5"
             android:layout_below="@+id/switch4"
             android:background="@color/background_color_content"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="21dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -154,7 +154,7 @@
             android:id="@+id/switch6"
             android:layout_below="@+id/switch5"
             android:background="@color/background_color_content"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="21dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
             android:id="@+id/switch7"
             android:layout_below="@+id/switch6"
             android:background="@color/background_color_content"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="21dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -174,7 +174,7 @@
             android:id="@+id/switch8"
             android:layout_below="@+id/switch7"
             android:background="@color/background_color_content"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="21dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -184,7 +184,7 @@
             android:id="@+id/switch9"
             android:layout_below="@+id/switch8"
             android:background="@color/background_color_content"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="21dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -194,7 +194,246 @@
             android:id="@+id/switch10"
             android:layout_below="@+id/switch9"
             android:background="@color/background_color_content"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="21dp"/>
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/field1"
+            android:layout_marginTop="50dp"
+            android:layout_toRightOf="@+id/switch1"
+            android:layout_marginLeft="50dp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/field2"
+            android:layout_below="@+id/field1"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/switch2"
+            android:layout_marginLeft="50dp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/field3"
+            android:layout_below="@+id/field2"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/switch3"
+            android:layout_marginLeft="50dp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/field4"
+            android:layout_below="@+id/field3"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/switch4"
+            android:layout_marginLeft="50dp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/field5"
+            android:layout_below="@+id/field4"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/switch5"
+            android:layout_marginLeft="50dp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/field6"
+            android:layout_below="@+id/field5"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/switch6"
+            android:layout_marginLeft="50dp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/field7"
+            android:layout_below="@+id/field6"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/switch7"
+            android:layout_marginLeft="50dp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/field8"
+            android:layout_below="@+id/field7"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/switch8"
+            android:layout_marginLeft="50dp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/field9"
+            android:layout_below="@+id/field8"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/switch9"
+            android:layout_marginLeft="50dp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/field10"
+            android:layout_below="@+id/field9"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/switch9"
+            android:layout_marginLeft="50dp"
+            android:visibility="invisible" />
+
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:id="@+id/state1"
+            android:layout_toRightOf="@+id/field1"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="60dp"
+            android:visibility="invisible"
+            android:checked="false" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:id="@+id/state2"
+            android:layout_toRightOf="@+id/field2"
+            android:layout_below="@+id/state1"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="18dp"
+            android:visibility="invisible"
+            android:checked="false" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:id="@+id/state3"
+            android:layout_toRightOf="@+id/field3"
+            android:layout_below="@+id/state2"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="18dp"
+            android:visibility="invisible"
+            android:checked="false" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:id="@+id/state4"
+            android:layout_toRightOf="@+id/field4"
+            android:layout_below="@+id/state3"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="18dp"
+            android:visibility="invisible"
+            android:checked="false" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:id="@+id/state5"
+            android:layout_toRightOf="@+id/field5"
+            android:layout_below="@+id/state4"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="18dp"
+            android:visibility="invisible"
+            android:checked="false" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:id="@+id/state6"
+            android:layout_toRightOf="@+id/field6"
+            android:layout_below="@+id/state5"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="18dp"
+            android:visibility="invisible"
+            android:checked="false" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:id="@+id/state7"
+            android:layout_toRightOf="@+id/field7"
+            android:layout_below="@+id/state6"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="18dp"
+            android:visibility="invisible"
+            android:checked="false" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:id="@+id/state8"
+            android:layout_toRightOf="@+id/field8"
+            android:layout_below="@+id/state7"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="18dp"
+            android:visibility="invisible"
+            android:checked="false" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:id="@+id/state9"
+            android:layout_toRightOf="@+id/field9"
+            android:layout_below="@+id/state8"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="18dp"
+            android:visibility="invisible"
+            android:checked="false" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:id="@+id/state10"
+            android:layout_toRightOf="@+id/field10"
+            android:layout_below="@+id/state9"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="18dp"
+            android:visibility="invisible"
+            android:checked="false" />
 
     </RelativeLayout>
 

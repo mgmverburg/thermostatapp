@@ -48,6 +48,16 @@ public class WeekProgram {
         set_durations();
     }
 
+    //Added by Stan Roelofs on 14-6-2015
+    //Lets you modify specific switch of a day in the weekprogram
+    public WeekProgram setSwitch(WeekProgram wpg, String day, int switchnr, Boolean state, String time, String type){
+        ArrayList<Switch> switches = new ArrayList<Switch>();
+        switches = getSwitches(day);
+        switches.set(switchnr, new Switch(type, state, time));
+        this.data.put(day, switches);
+        return wpg;
+    }
+
     //Added by Stan Roelofs on 14-6-2015, not safe.
     //Returns ArrayList of all switches of one day.
     public ArrayList<Switch> getSwitches(String day){
