@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\s148494\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="23.0.0 rc2"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\thermostatapp\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-61ac0b32e2a3096ed8e87dbd3d55a8b0381f34ac.jar" />
-    </item>
-    <item
-        jar="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\thermostatapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.0 rc2"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\thermostatapp\app\build\intermediates\pre-dexed\debug\classes-77ae783b1998ca34d12e751a9088b7f172e5772f.jar" />
-    </item>
-    <item
-        jar="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\thermostatapp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
+        jar="C:\Users\s143243\Documents\henk\henk2\thermostatapp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.0 rc2"
         sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\thermostatapp\app\build\intermediates\pre-dexed\debug\classes-1d1f0963ace421f3ddf3b05bf7d469f224ae4dad.jar" />
+        <dex dex="C:\Users\s143243\Documents\henk\henk2\thermostatapp\app\build\intermediates\pre-dexed\debug\classes-98fafdfa692f6f317898ded03b229391a63c7313.jar" />
     </item>
     <item
-        jar="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\thermostatapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
+        jar="C:\Users\s143243\Documents\henk\henk2\thermostatapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="23.0.0 rc2"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="C:\Users\s148494\Documents\Dropbox\Schooljaar_2014-2015\HTI\AndroidProjects\thermostatapp\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-0c9c65f6b7c5caac408cd84123ca126395c277e2.jar" />
+        <dex dex="C:\Users\s143243\Documents\henk\henk2\thermostatapp\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-69f29c1bfd6b446706c32ebfe1983d4439852d59.jar" />
+    </item>
+    <item
+        jar="C:\Users\s143243\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0 rc2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\s143243\Documents\henk\henk2\thermostatapp\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-be96a0804e1a13ab9776272b24836dc08ac8d084.jar" />
+    </item>
+    <item
+        jar="C:\Users\s143243\Documents\henk\henk2\thermostatapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0 rc2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\s143243\Documents\henk\henk2\thermostatapp\app\build\intermediates\pre-dexed\debug\classes-a02ec2f82bf4bed8c8210472cd2f4d6badcba62d.jar" />
     </item>
 
 </items>

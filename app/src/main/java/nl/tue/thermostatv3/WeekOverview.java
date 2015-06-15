@@ -510,10 +510,10 @@ public class WeekOverview extends ActionBarActivity  {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 selected = isChecked;
-                new Thread(new Runnable(){
-                    public void run(){
-                        rbSelected = (RadioButton)findViewById(groupWeek.getCheckedRadioButtonId());
-                        String selectedDay = (String)rbSelected.getText();
+                new Thread(new Runnable() {
+                    public void run() {
+                        rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                        String selectedDay = (String) rbSelected.getText();
                         String day = toDay(selectedDay);
                         time = switches.get(1).getTime();
                         type = switches.get(1).getType();
@@ -696,7 +696,7 @@ public class WeekOverview extends ActionBarActivity  {
                             } else {
                                 fieldSwitches[0].post(new Runnable() {
                                     public void run() {
-                                        fieldSwitches[0].setText("invalid input");
+                                        fieldSwitches[0].setText("Use hh:mm");
                                     }
                                 });
                             }
@@ -713,23 +713,705 @@ public class WeekOverview extends ActionBarActivity  {
                 //If edittext loses focus
                 if (!hasFocus) {
                     input = fieldSwitches[0].getText().toString();
-                    if(verifyTimeInput(input)){
-                        fieldSwitches[0].post(new Runnable() {
-                            public void run() {
-                                fieldSwitches[0].setText(input);
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[0].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[0].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[0].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(0).getState();
+                                System.out.println(state);
+                                type = switches.get(0).getType();
+                                wpg = wpg.setSwitch(wpg, day, 0, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[0].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[0].setText("Use hh:mm");
+                                    }
+                                });
                             }
-                        });
-                    } else{
-                        fieldSwitches[0].post(new Runnable() {
-                            public void run() {
-                                fieldSwitches[0].setText("invalid input");
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        fieldSwitches[1].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                i = actionId;
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[1].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[1].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[1].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(1).getState();
+                                System.out.println(state);
+                                type = switches.get(1).getType();
+                                wpg = wpg.setSwitch(wpg, day, 1, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[1].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[1].setText("Use hh:mm");
+                                    }
+                                });
                             }
-                        });
-                    }
+                        }
+                    }).start();
+                    return true;
+                }
+                return false;
+            }
+        });
+        fieldSwitches[1].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                //If edittext loses focus
+                if (!hasFocus) {
+                    input = fieldSwitches[1].getText().toString();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[1].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[1].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[1].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(1).getState();
+                                System.out.println(state);
+                                type = switches.get(1).getType();
+                                wpg = wpg.setSwitch(wpg, day, 1, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[1].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[1].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        fieldSwitches[2].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                i = actionId;
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[2].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[2].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[2].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(2).getState();
+                                System.out.println(state);
+                                type = switches.get(2).getType();
+                                wpg = wpg.setSwitch(wpg, day, 2, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[2].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[2].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                    return true;
+                }
+                return false;
+            }
+        });
+        fieldSwitches[2].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                //If edittext loses focus
+                if (!hasFocus) {
+                    input = fieldSwitches[2].getText().toString();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[2].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[2].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[2].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(2).getState();
+                                System.out.println(state);
+                                type = switches.get(2).getType();
+                                wpg = wpg.setSwitch(wpg, day, 2, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[2].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[2].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        fieldSwitches[3].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                i = actionId;
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[3].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[3].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[3].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(3).getState();
+                                System.out.println(state);
+                                type = switches.get(3).getType();
+                                wpg = wpg.setSwitch(wpg, day, 3, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[3].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[3].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                    return true;
+                }
+                return false;
+            }
+        });
+        fieldSwitches[3].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                //If edittext loses focus
+                if (!hasFocus) {
+                    input = fieldSwitches[3].getText().toString();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[3].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[3].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[3].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(3).getState();
+                                System.out.println(state);
+                                type = switches.get(3).getType();
+                                wpg = wpg.setSwitch(wpg, day, 3, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[3].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[3].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        fieldSwitches[4].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                i = actionId;
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[4].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[4].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[4].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(4).getState();
+                                System.out.println(state);
+                                type = switches.get(4).getType();
+                                wpg = wpg.setSwitch(wpg, day, 4, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[4].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[4].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                    return true;
+                }
+                return false;
+            }
+        });
+        fieldSwitches[4].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                //If edittext loses focus
+                if (!hasFocus) {
+                    input = fieldSwitches[4].getText().toString();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[4].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[4].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[4].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(4).getState();
+                                System.out.println(state);
+                                type = switches.get(4).getType();
+                                wpg = wpg.setSwitch(wpg, day, 4, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[4].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[4].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        fieldSwitches[5].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                i = actionId;
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[5].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[5].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[5].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(5).getState();
+                                System.out.println(state);
+                                type = switches.get(5).getType();
+                                wpg = wpg.setSwitch(wpg, day, 5, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[5].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[5].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                    return true;
+                }
+                return false;
+            }
+        });
+        fieldSwitches[5].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                //If edittext loses focus
+                if (!hasFocus) {
+                    input = fieldSwitches[5].getText().toString();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[5].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[5].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[5].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(5).getState();
+                                System.out.println(state);
+                                type = switches.get(5).getType();
+                                wpg = wpg.setSwitch(wpg, day, 5, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[5].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[5].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        fieldSwitches[6].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                i = actionId;
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[6].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[6].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[6].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(6).getState();
+                                System.out.println(state);
+                                type = switches.get(6).getType();
+                                wpg = wpg.setSwitch(wpg, day, 6, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[6].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[6].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                    return true;
+                }
+                return false;
+            }
+        });
+        fieldSwitches[6].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                //If edittext loses focus
+                if (!hasFocus) {
+                    input = fieldSwitches[6].getText().toString();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[6].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[6].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[6].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(6).getState();
+                                System.out.println(state);
+                                type = switches.get(6).getType();
+                                wpg = wpg.setSwitch(wpg, day, 6, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[6].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[6].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        fieldSwitches[7].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                i = actionId;
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[7].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[7].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[7].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(7).getState();
+                                System.out.println(state);
+                                type = switches.get(7).getType();
+                                wpg = wpg.setSwitch(wpg, day, 7, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[7].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[7].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                    return true;
+                }
+                return false;
+            }
+        });
+        fieldSwitches[7].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                //If edittext loses focus
+                if (!hasFocus) {
+                    input = fieldSwitches[7].getText().toString();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[7].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[7].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[7].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(7).getState();
+                                System.out.println(state);
+                                type = switches.get(7).getType();
+                                wpg = wpg.setSwitch(wpg, day, 7, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[7].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[7].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        fieldSwitches[8].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                i = actionId;
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[8].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[8].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[8].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(8).getState();
+                                System.out.println(state);
+                                type = switches.get(8).getType();
+                                wpg = wpg.setSwitch(wpg, day, 8, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[8].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[8].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                    return true;
+                }
+                return false;
+            }
+        });
+        fieldSwitches[8].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                //If edittext loses focus
+                if (!hasFocus) {
+                    input = fieldSwitches[8].getText().toString();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[8].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[8].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[8].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(8).getState();
+                                System.out.println(state);
+                                type = switches.get(8).getType();
+                                wpg = wpg.setSwitch(wpg, day, 8, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[8].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[8].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        fieldSwitches[9].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                i = actionId;
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[9].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[9].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[9].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(9).getState();
+                                System.out.println(state);
+                                type = switches.get(9).getType();
+                                wpg = wpg.setSwitch(wpg, day, 9, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[9].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[9].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                    return true;
+                }
+                return false;
+            }
+        });
+        fieldSwitches[9].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                //If edittext loses focus
+                if (!hasFocus) {
+                    input = fieldSwitches[9].getText().toString();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            input = fieldSwitches[9].getText().toString();
+                            //If input valid
+                            if (verifyTimeInput(input)) {
+                                fieldSwitches[9].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[9].setText(input);
+                                    }
+                                });
+                                rbSelected = (RadioButton) findViewById(groupWeek.getCheckedRadioButtonId());
+                                String selectedDay = (String) rbSelected.getText();
+                                String day = toDay(selectedDay);
+                                state = switches.get(9).getState();
+                                System.out.println(state);
+                                type = switches.get(9).getType();
+                                wpg = wpg.setSwitch(wpg, day, 9, state, input, type);
+                                HeatingSystem.setWeekProgram(wpg);
+                            } else {
+                                fieldSwitches[9].post(new Runnable() {
+                                    public void run() {
+                                        fieldSwitches[9].setText("Use hh:mm");
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
                 }
             }
         });
     }
+
+
 
     //Converts day abbreviation to full day name
     public String toDay(String day){
@@ -758,16 +1440,12 @@ public class WeekOverview extends ActionBarActivity  {
     }
 
     //Checks if time input is valid
-    //Accepted:
-    //(1) 01:00, 02:00
-    //(2) 1:00, 2:00
-    //(3) 23:59, 15:00
-    //(4) 00:00, 0:00
+    //Accepted: hh:mm
     public Boolean verifyTimeInput(String time){
         Pattern pattern;
         Matcher matcher;
 
-        final String TIME_24_HOURS_PATTERN = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+        final String TIME_24_HOURS_PATTERN = "([01][0-9]|2[0-3]):[0-5][0-9]";
 
         pattern = Pattern.compile(TIME_24_HOURS_PATTERN);
         matcher = pattern.matcher(time);
@@ -786,11 +1464,11 @@ public class WeekOverview extends ActionBarActivity  {
                                     int position, long id) {
 
 
-               TextView textView = (TextView) view.findViewById(R.id.text1);
+                TextView textView = (TextView) view.findViewById(R.id.text1);
                 String buttonString = (String)textView.getText();
                 if (buttonString.startsWith("Home") ){
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
-                     startActivity(intent);
+                    startActivity(intent);
                 } else if (buttonString.startsWith("Week program")) {
                     Intent intent = new Intent(view.getContext(), WeekOverview.class);
                     startActivity(intent);
