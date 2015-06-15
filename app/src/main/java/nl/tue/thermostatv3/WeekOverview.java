@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.thermostatapp.util.HeatingSystem;
 import org.thermostatapp.util.Switch;
@@ -500,7 +501,11 @@ public class WeekOverview extends ActionBarActivity  {
                         time = switches.get(0).getTime();
                         type = switches.get(0).getType();
                         wpg = wpg.setSwitch(wpg, day, 0, selected, time, type);
-                        HeatingSystem.setWeekProgram(wpg);
+                        try {
+                            HeatingSystem.setWeekProgram(wpg);
+                        } catch (Exception e){
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
                 }).start();
             }
@@ -518,7 +523,11 @@ public class WeekOverview extends ActionBarActivity  {
                         time = switches.get(1).getTime();
                         type = switches.get(1).getType();
                         wpg = wpg.setSwitch(wpg, day, 1, selected, time, type);
-                        HeatingSystem.setWeekProgram(wpg);
+                        try {
+                            HeatingSystem.setWeekProgram(wpg);
+                        } catch (Exception e){
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
                 }).start();
             }
@@ -536,7 +545,11 @@ public class WeekOverview extends ActionBarActivity  {
                         time = switches.get(2).getTime();
                         type = switches.get(2).getType();
                         wpg = wpg.setSwitch(wpg, day, 2, selected, time, type);
-                        HeatingSystem.setWeekProgram(wpg);
+                        try {
+                            HeatingSystem.setWeekProgram(wpg);
+                        } catch (Exception e){
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
                 }).start();
             }
@@ -554,7 +567,11 @@ public class WeekOverview extends ActionBarActivity  {
                         time = switches.get(3).getTime();
                         type = switches.get(3).getType();
                         wpg = wpg.setSwitch(wpg, day, 3, selected, time, type);
-                        HeatingSystem.setWeekProgram(wpg);
+                        try {
+                            HeatingSystem.setWeekProgram(wpg);
+                        } catch (Exception e){
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
                 }).start();
             }
@@ -572,7 +589,11 @@ public class WeekOverview extends ActionBarActivity  {
                         time = switches.get(4).getTime();
                         type = switches.get(4).getType();
                         wpg = wpg.setSwitch(wpg, day, 4, selected, time, type);
-                        HeatingSystem.setWeekProgram(wpg);
+                        try {
+                            HeatingSystem.setWeekProgram(wpg);
+                        } catch (Exception e){
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
                 }).start();
             }
@@ -590,7 +611,11 @@ public class WeekOverview extends ActionBarActivity  {
                         time = switches.get(5).getTime();
                         type = switches.get(5).getType();
                         wpg = wpg.setSwitch(wpg, day, 5, selected, time, type);
-                        HeatingSystem.setWeekProgram(wpg);
+                        try {
+                            HeatingSystem.setWeekProgram(wpg);
+                        } catch (Exception e){
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
                 }).start();
             }
@@ -608,7 +633,11 @@ public class WeekOverview extends ActionBarActivity  {
                         time = switches.get(6).getTime();
                         type = switches.get(6).getType();
                         wpg = wpg.setSwitch(wpg, day, 6, selected, time, type);
-                        HeatingSystem.setWeekProgram(wpg);
+                        try {
+                            HeatingSystem.setWeekProgram(wpg);
+                        } catch (Exception e){
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
                 }).start();
             }
@@ -626,7 +655,11 @@ public class WeekOverview extends ActionBarActivity  {
                         time = switches.get(7).getTime();
                         type = switches.get(7).getType();
                         wpg = wpg.setSwitch(wpg, day, 7, selected, time, type);
-                        HeatingSystem.setWeekProgram(wpg);
+                        try {
+                            HeatingSystem.setWeekProgram(wpg);
+                        } catch (Exception e){
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
                 }).start();
             }
@@ -644,7 +677,11 @@ public class WeekOverview extends ActionBarActivity  {
                         time = switches.get(8).getTime();
                         type = switches.get(8).getType();
                         wpg = wpg.setSwitch(wpg, day, 8, selected, time, type);
-                        HeatingSystem.setWeekProgram(wpg);
+                        try {
+                            HeatingSystem.setWeekProgram(wpg);
+                        } catch (Exception e){
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
                 }).start();
             }
@@ -662,7 +699,11 @@ public class WeekOverview extends ActionBarActivity  {
                         time = switches.get(9).getTime();
                         type = switches.get(9).getType();
                         wpg = wpg.setSwitch(wpg, day, 9, selected, time, type);
-                        HeatingSystem.setWeekProgram(wpg);
+                        try {
+                            HeatingSystem.setWeekProgram(wpg);
+                        } catch (Exception e){
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
                 }).start();
             }
@@ -804,7 +845,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(1).getType();
                                 wpg = wpg.setSwitch(wpg, day, 1, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[1].post(new Runnable() {
                                     public void run() {
@@ -840,7 +885,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(2).getType();
                                 wpg = wpg.setSwitch(wpg, day, 2, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[2].post(new Runnable() {
                                     public void run() {
@@ -878,7 +927,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(2).getType();
                                 wpg = wpg.setSwitch(wpg, day, 2, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[2].post(new Runnable() {
                                     public void run() {
@@ -914,7 +967,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(3).getType();
                                 wpg = wpg.setSwitch(wpg, day, 3, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[3].post(new Runnable() {
                                     public void run() {
@@ -952,7 +1009,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(3).getType();
                                 wpg = wpg.setSwitch(wpg, day, 3, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[3].post(new Runnable() {
                                     public void run() {
@@ -988,7 +1049,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(4).getType();
                                 wpg = wpg.setSwitch(wpg, day, 4, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[4].post(new Runnable() {
                                     public void run() {
@@ -1026,7 +1091,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(4).getType();
                                 wpg = wpg.setSwitch(wpg, day, 4, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[4].post(new Runnable() {
                                     public void run() {
@@ -1062,7 +1131,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(5).getType();
                                 wpg = wpg.setSwitch(wpg, day, 5, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[5].post(new Runnable() {
                                     public void run() {
@@ -1100,7 +1173,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(5).getType();
                                 wpg = wpg.setSwitch(wpg, day, 5, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[5].post(new Runnable() {
                                     public void run() {
@@ -1136,7 +1213,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(6).getType();
                                 wpg = wpg.setSwitch(wpg, day, 6, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[6].post(new Runnable() {
                                     public void run() {
@@ -1174,8 +1255,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(6).getType();
                                 wpg = wpg.setSwitch(wpg, day, 6, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
-                            } else {
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }                            } else {
                                 fieldSwitches[6].post(new Runnable() {
                                     public void run() {
                                         fieldSwitches[6].setText("Use hh:mm");
@@ -1210,8 +1294,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(7).getType();
                                 wpg = wpg.setSwitch(wpg, day, 7, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
-                            } else {
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }                            } else {
                                 fieldSwitches[7].post(new Runnable() {
                                     public void run() {
                                         fieldSwitches[7].setText("Use hh:mm");
@@ -1248,8 +1335,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(7).getType();
                                 wpg = wpg.setSwitch(wpg, day, 7, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
-                            } else {
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }                            } else {
                                 fieldSwitches[7].post(new Runnable() {
                                     public void run() {
                                         fieldSwitches[7].setText("Use hh:mm");
@@ -1284,8 +1374,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(8).getType();
                                 wpg = wpg.setSwitch(wpg, day, 8, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
-                            } else {
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }                            } else {
                                 fieldSwitches[8].post(new Runnable() {
                                     public void run() {
                                         fieldSwitches[8].setText("Use hh:mm");
@@ -1322,8 +1415,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(8).getType();
                                 wpg = wpg.setSwitch(wpg, day, 8, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
-                            } else {
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }                            } else {
                                 fieldSwitches[8].post(new Runnable() {
                                     public void run() {
                                         fieldSwitches[8].setText("Use hh:mm");
@@ -1358,8 +1454,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(9).getType();
                                 wpg = wpg.setSwitch(wpg, day, 9, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
-                            } else {
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }                            } else {
                                 fieldSwitches[9].post(new Runnable() {
                                     public void run() {
                                         fieldSwitches[9].setText("Use hh:mm");
@@ -1396,8 +1495,11 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(9).getType();
                                 wpg = wpg.setSwitch(wpg, day, 9, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
-                            } else {
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    System.err.println("Error from getdata" + e);
+                                }                            } else {
                                 fieldSwitches[9].post(new Runnable() {
                                     public void run() {
                                         fieldSwitches[9].setText("Use hh:mm");
