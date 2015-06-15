@@ -14,7 +14,7 @@
     android:id="@+id/item_list_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color_sideview"
+    android:background="@drawable/menuitem_selector"
    >
 
 
@@ -24,19 +24,21 @@
         android:layout_height="32dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/background_color_sideview"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/menuitem_selector"
         android:src="@drawable/ic_settings"/>
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/text1"
         android:layout_width="205dp"
         android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/menu_padding_start"
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-        android:background="@color/background_color_sideview"
+        android:background="@drawable/menuitem_selector"
         android:minHeight="?android:attr/listPreferredItemHeightSmall">
     </TextView>
 

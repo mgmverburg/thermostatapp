@@ -3,6 +3,7 @@
     <color name="background_color_header">#FB9913</color>
     <color name="background_color_content">#FFFFFF</color>
     <color name="background_color_sideview">#F3F3F3</color>
+    <color name="background_color_sideview_pressed">#CCCCCC</color>
 
     <color name="btn_day_normal">@color/background_color_sideview</color>
     <color name="btn_day_pressed">#C3C3C3</color>
