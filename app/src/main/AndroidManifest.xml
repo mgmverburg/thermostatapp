@@ -5,7 +5,7 @@
         >
         <activity
             android:name=".MainActivity"
-            android:label="@string/main_page"
+            android:label="Thermometer"
             android:theme="@style/AppTheme"
             >
             <intent-filter>

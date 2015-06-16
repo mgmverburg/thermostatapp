@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import org.thermostatapp.util.*;
@@ -33,6 +34,9 @@ public class DayNight extends ActionBarActivity {
 
     TextView tempDay;
     TextView tempNight;
+
+    SeekBar seekBarDay;
+    SeekBar seekBarNight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,8 @@ public class DayNight extends ActionBarActivity {
         Button bPlusNight = (Button)findViewById(R.id.bPlusNight);
         Button bMinusDay = (Button)findViewById(R.id.bMinusDay);
         Button bMinusNight = (Button)findViewById(R.id.bMinusNight);
+        seekBarDay = (SeekBar)findViewById(R.id.seekBarDay);
+        seekBarNight = (SeekBar)findViewById(R.id.seekBarNight);
         tempDay = (TextView)findViewById(R.id.tempDay);
         tempNight = (TextView)findViewById(R.id.tempNight);
 
@@ -71,12 +77,22 @@ public class DayNight extends ActionBarActivity {
                     vtempNight = Double.parseDouble(HeatingSystem.get("nightTemperature"));
                     tempDay.post(new Runnable() {
                         public void run() {
-                            tempDay.setText(vtempDay + " \u2103");
+                            if(vtempDay >= 10) {
+                                tempDay.setText(vtempDay + " \u2103");
+                            } else{
+                                tempDay.setText(vtempDay + " \u2103" + "  ");
+                            }
+                            seekBarDay.setProgress((int)vtempDay*10);
                         }
                     });
                     tempNight.post(new Runnable() {
                         public void run() {
-                            tempNight.setText(vtempNight + " \u2103");
+                            if(vtempNight >= 10) {
+                                tempNight.setText(vtempNight + " \u2103");
+                            } else{
+                                tempNight.setText(vtempNight + "\u2103" + "  ");
+                            }
+                            seekBarNight.setProgress((int) vtempNight * 10);
                         }
                     });
                 } catch (Exception e) {
@@ -93,14 +109,22 @@ public class DayNight extends ActionBarActivity {
                     public void run() {
                         try {
                             vtempDay = (double)Math.round((vtempDay + 0.1)*10)/10;
+                            if(vtempDay>30){
+                                vtempDay = 30;
+                            }
                             HeatingSystem.put("dayTemperature", Double.toString(vtempDay));
+                            seekBarDay.setProgress((int) vtempDay * 10);
                             tempDay.post(new Runnable() {
                                 public void run() {
-                                    tempDay.setText(vtempDay + " \u2103");
+                                    //To prevent circle from becoming smaller
+                                    if (vtempDay >= 10) {
+                                        tempDay.setText(vtempDay + " \u2103");
+                                    } else {
+                                        tempDay.setText(vtempDay + " \u2103" + "  ");
+                                    }
                                 }
                             });
                         } catch (Exception e) {
-                            vtempDay = vtempDay - 0.1;
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -115,14 +139,22 @@ public class DayNight extends ActionBarActivity {
                     public void run() {
                         try {
                             vtempDay = (double)Math.round((vtempDay - 0.1)*10)/10;
+                            if(vtempDay<5){
+                                vtempDay = 5;
+                            }
                             HeatingSystem.put("dayTemperature", Double.toString(vtempDay));
+                            seekBarDay.setProgress((int)vtempDay*10);
                             tempDay.post(new Runnable() {
                                 public void run() {
-                                    tempDay.setText(vtempDay + " \u2103");
+                                    //To prevent circle from becoming smaller
+                                    if (vtempDay >= 10) {
+                                        tempDay.setText(vtempDay + " \u2103");
+                                    } else {
+                                        tempDay.setText(vtempDay + " \u2103" + "  ");
+                                    }
                                 }
                             });
                         } catch (Exception e) {
-                            vtempDay = vtempDay - 0.1;
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -137,14 +169,22 @@ public class DayNight extends ActionBarActivity {
                     public void run() {
                         try {
                             vtempNight = (double)Math.round((vtempNight + 0.1)*10)/10;
+                            if(vtempNight>30){
+                                vtempNight = 30;
+                            }
                             HeatingSystem.put("nightTemperature", Double.toString(vtempNight));
+                            seekBarNight.setProgress((int) vtempNight * 10);
                             tempNight.post(new Runnable() {
                                 public void run() {
-                                    tempNight.setText(vtempNight + " \u2103");
+                                    //To prevent circle from becoming smaller
+                                    if(vtempNight >= 10) {
+                                        tempNight.setText(vtempNight + " \u2103");
+                                    } else{
+                                        tempNight.setText(vtempNight + " \u2103" + "  ");
+                                    }
                                 }
                             });
                         } catch (Exception e) {
-                            vtempNight = vtempNight - 0.1;
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -158,17 +198,126 @@ public class DayNight extends ActionBarActivity {
                 new Thread(new Runnable() {
                     public void run() {
                         try {
-                            vtempNight = (double)Math.round((vtempNight - 0.1)*10)/10;
+                            vtempNight = (double) Math.round((vtempNight - 0.1) * 10) / 10;
+                            if (vtempNight < 5) {
+                                vtempDay = 5;
+                            }
                             HeatingSystem.put("nightTemperature", Double.toString(vtempNight));
+                            seekBarNight.setProgress((int) vtempNight * 10);
                             tempNight.post(new Runnable() {
                                 public void run() {
-                                    tempNight.setText(vtempNight + " \u2103");
+                                    //To prevent circle from becoming smaller
+                                    if (vtempNight >= 10) {
+                                        tempNight.setText(vtempNight + " \u2103");
+                                    } else {
+                                        tempNight.setText(vtempNight + " \u2103" + "  ");
+                                    }
                                 }
                             });
                         } catch (Exception e) {
-                            vtempNight = vtempNight - 0.1;
                             System.err.println("Error from getdata" + e);
                         }
+                    }
+                }).start();
+            }
+        });
+
+        seekBarDay.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                tempDay.post(new Runnable() {
+                    public void run() {
+                        vtempDay = seekBarDay.getProgress() / 10;
+                        if(vtempDay<5){
+                            vtempDay=5;
+                        }
+                        //To prevent circle from becoming smaller
+                        if (vtempDay >= 10) {
+                            tempDay.setText(vtempDay + " \u2103");
+                        } else {
+                            tempDay.setText(vtempDay + " \u2103" + "  ");
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        vtempDay = seekBarDay.getProgress() / 10;
+                        if (vtempDay < 5) {
+                            vtempDay = 5;
+                            seekBarDay.setProgress(50);
+                        }
+                        try {
+                            HeatingSystem.put("dayTemperature", Double.toString(vtempDay));
+                        } catch (Exception e) {
+                            System.err.println("Error from getdata" + e);
+                        }
+                        //Update textviews
+                        tempDay.post(new Runnable() {
+                            public void run() {
+                                //To prevent circle from becoming smaller
+                                if (vtempDay >= 10) {
+                                    tempDay.setText(vtempDay + " \u2103");
+                                } else {
+                                    tempDay.setText(vtempDay + " \u2103" + "  ");
+                                }
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
+
+        seekBarNight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                vtempNight = seekBarNight.getProgress() / 10;
+                //To prevent circle from becoming smaller
+                if (vtempNight >= 10) {
+                    tempNight.setText(vtempNight + " \u2103");
+                } else {
+                    tempNight.setText(vtempNight + " \u2103" + "  ");
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                new Thread(new Runnable(){
+                    public void run() {
+                        vtempNight = seekBarNight.getProgress() / 10;
+                        if (vtempNight < 5) {
+                            vtempNight = 5;
+                            seekBarNight.setProgress(50);
+                        }
+                        try {
+                            HeatingSystem.put("nightTemperature", Double.toString(vtempNight));
+                        } catch (Exception e) {
+                            System.err.println("Error from getdata" + e);
+                        }
+                        //Update textviews
+                        tempNight.post(new Runnable() {
+                            public void run() {
+                                //To prevent circle from becoming smaller
+                                if (vtempNight >= 10) {
+                                    tempNight.setText(vtempNight + " \u2103");
+                                } else {
+                                    tempNight.setText(vtempNight + " \u2103" + "  ");
+                                }
+                            }
+                        });
                     }
                 }).start();
             }

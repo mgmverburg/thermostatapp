@@ -146,6 +146,26 @@
             android:layout_marginLeft="215dp"
             />
 
+        <SeekBar
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBarDay"
+            android:indeterminate="false"
+            android:layout_below="@+id/iconDay"
+            android:layout_marginTop="50dp"
+            android:layout_alignStart="@+id/iconDay"
+            android:max="300"/>
+
+        <SeekBar
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBarNight"
+            android:indeterminate="false"
+            android:layout_below="@+id/iconNight"
+            android:layout_marginTop="50dp"
+            android:layout_alignStart="@+id/iconDay"
+            android:max="300"/>
+
     </RelativeLayout>
 
     <!-- Side navigation drawer UI -->
