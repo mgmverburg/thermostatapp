@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background_color_header">#FB9913</color>
+    <color name="background_color_header">@color/orange_theme</color>
+    <color name="orange_theme">#FB9913</color>
     <color name="background_color_content">#FFFFFF</color>
     <color name="background_color_sideview">#F3F3F3</color>
     <color name="background_color_sideview_pressed">#CCCCCC</color>
@@ -9,5 +10,8 @@
     <color name="btn_day_pressed">#C3C3C3</color>
     <color name="btn_day_checked">#9D9D9D</color>
     <color name="btn_day_checkpressed">@color/btn_day_pressed</color>
+
+    <color name="default_button_color">#D6D7D7</color>
+    <color name="default_button_color_pressed">#BBBCBC</color>
 
 </resources>

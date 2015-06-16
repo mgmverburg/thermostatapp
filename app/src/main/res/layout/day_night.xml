@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/iconDay"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="95dp"
             android:background="@drawable/ic_day"
             android:layout_marginStart="25dp"
             android:layout_below="@+id/textView"
@@ -43,8 +43,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:layout_marginTop="165dp"
+            android:id="@+id/iconNight"
+            android:layout_marginTop="230dp"
             android:background="@drawable/ic_night"
             android:layout_below="@+id/iconDay"
             android:layout_alignStart="@+id/iconDay" />
@@ -55,10 +55,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Day"
             android:id="@+id/textView2"
-            android:layout_marginStart="35dp"
             android:layout_alignBottom="@+id/iconDay"
+            android:layout_marginBottom="5dp"
             android:layout_toEndOf="@+id/iconDay"
-            android:background="@color/background_color_content"/>
+            android:layout_marginStart="25dp"
+            android:background="@color/background_color_content"
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -66,9 +68,11 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Night"
             android:id="@+id/textView3"
-            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignBottom="@+id/iconNight"
+            android:layout_marginBottom="5dp"
             android:layout_alignStart="@+id/textView2"
-            android:background="@color/background_color_content"/>
+            android:background="@color/background_color_content"
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,10 +80,15 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text=""
             android:id="@+id/tempDay"
-            android:layout_below="@+id/bPlusDay"
-            android:layout_toRightOf="@+id/iconDay"
-            android:layout_marginLeft="170dp"
-            android:background="@color/background_color_content"/>
+            android:layout_toRightOf="@+id/textView2"
+            android:layout_marginLeft="72dp"
+            android:layout_above="@+id/bMinusDay"
+            android:background="@drawable/temp_circle"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,48 +96,62 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text=""
             android:id="@+id/tempNight"
-            android:layout_toRightOf="@+id/imageView"
-            android:layout_marginLeft="170dp"
-            android:layout_below="@+id/bPlusNight"
-            android:background="@color/background_color_content"/>
+            android:layout_alignStart="@+id/tempDay"
+            android:layout_above="@+id/bMinusNight"
+            android:background="@drawable/temp_circle"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:textColor="@android:color/black"/>
 
         <Button
+            style="@style/btnplus"
             android:layout_width="@android:dimen/app_icon_size"
             android:layout_height="wrap_content"
             android:text="+"
             android:id="@+id/bPlusDay"
-            android:layout_marginLeft="215dp"
-            android:layout_marginTop="70dp"/>
+            android:layout_above="@id/tempDay"
+            android:layout_marginLeft="215dp" />
 
         <Button
+            style="@style/btnplus"
             android:layout_width="@android:dimen/app_icon_size"
             android:layout_height="wrap_content"
             android:text="+"
             android:id="@+id/bPlusNight"
-            android:layout_marginLeft="215dp"
-            android:layout_marginTop="265dp" />
+            android:layout_above="@id/tempNight"
+            android:layout_alignStart="@id/bPlusDay"
+            />
 
         <Button
+            style="@style/btnminus"
             android:layout_width="@android:dimen/app_icon_size"
             android:layout_height="wrap_content"
             android:text="-"
             android:id="@+id/bMinusNight"
-            android:layout_marginLeft="215dp"
-            android:layout_marginTop="335dp" />
+            android:layout_alignBottom="@id/textView3"
+            android:layout_marginBottom="-97dp"
+            android:layout_alignStart="@id/bPlusNight"/>
+
 
         <Button
+            style="@style/btnminus"
             android:layout_width="@android:dimen/app_icon_size"
             android:layout_height="wrap_content"
             android:text="-"
             android:id="@+id/bMinusDay"
+            android:layout_alignBottom="@id/textView2"
+            android:layout_marginBottom="-97dp"
             android:layout_marginLeft="215dp"
-            android:layout_marginTop="140dp" />
+            />
+
     </RelativeLayout>
 
     <!-- Side navigation drawer UI -->
     <ListView
         android:id="@+id/navList"
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
         android:background="@color/background_color_sideview"/>
