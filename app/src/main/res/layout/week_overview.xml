@@ -198,7 +198,7 @@
 
         <EditText
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/field1"
@@ -209,7 +209,7 @@
 
         <EditText
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/field2"
@@ -221,7 +221,7 @@
 
         <EditText
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/field3"
@@ -233,7 +233,7 @@
 
         <EditText
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/field4"
@@ -245,7 +245,7 @@
 
         <EditText
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/field5"
@@ -257,7 +257,7 @@
 
         <EditText
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/field6"
@@ -269,7 +269,7 @@
 
         <EditText
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/field7"
@@ -281,7 +281,7 @@
 
         <EditText
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/field8"
@@ -293,7 +293,7 @@
 
         <EditText
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/field9"
@@ -305,7 +305,7 @@
 
         <EditText
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/field10"
@@ -334,7 +334,7 @@
             android:id="@+id/state2"
             android:layout_toRightOf="@+id/field2"
             android:layout_below="@+id/state1"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="45dp"
             android:layout_marginTop="18dp"
             android:visibility="invisible"
             android:checked="false" />
@@ -346,7 +346,7 @@
             android:id="@+id/state3"
             android:layout_toRightOf="@+id/field3"
             android:layout_below="@+id/state2"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="45dp"
             android:layout_marginTop="18dp"
             android:visibility="invisible"
             android:checked="false" />
