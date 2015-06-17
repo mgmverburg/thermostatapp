@@ -1578,7 +1578,8 @@ public class WeekOverview extends ActionBarActivity  {
                     Intent intent = new Intent(view.getContext(), DayNight.class);
                     startActivity(intent);
                 } else if (buttonString.startsWith("Settings")) {
-
+                    Intent intent = new Intent(view.getContext(), Settings.class);
+                    startActivity(intent);
                 } else {   //then it must be the help button
 
                 }
