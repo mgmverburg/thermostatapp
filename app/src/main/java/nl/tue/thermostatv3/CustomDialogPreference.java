@@ -29,18 +29,19 @@ public class CustomDialogPreference extends DialogPreference
         dialog.setTitle("Reset week program?");
         dialog.setMessage("This action will replace all your switches by the default values. You cannot undo this action. Are you sure you want to continue?");
         dialog.setCancelable(true);
-        dialog.setPositiveButton("Reset", new DialogInterface.OnClickListener()
-        {
+        dialog.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-                new Thread(new Runnable(){
-                    public void run(){
+            public void onClick(DialogInterface dialog, int which) {
+                new Thread(new Runnable() {
+                    public void run() {
                         try {
+                            HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/39";
+                            HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
+
                             WeekProgram wpg = HeatingSystem.getWeekProgram();
                             wpg.setDefault();
                             HeatingSystem.setWeekProgram(wpg);
-                        } catch (Exception e){
+                        } catch (Exception e) {
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -48,11 +49,9 @@ public class CustomDialogPreference extends DialogPreference
             }
         });
 
-        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-        {
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dlg, int which)
-            {
+            public void onClick(DialogInterface dlg, int which) {
                 dlg.cancel();
             }
         });

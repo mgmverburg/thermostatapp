@@ -18,7 +18,7 @@ import android.widget.TextView;
 import org.thermostatapp.util.*;
 
 /**
- * Created by s143243 on 9-6-2015.
+ * Created by Stan on 9-6-2015.
  */
 public class DayNight extends ActionBarActivity {
     private ListView mDrawerList;

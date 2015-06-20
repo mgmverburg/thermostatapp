@@ -18,10 +18,6 @@ public class Settings extends PreferenceActivity{
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.user_settings);
 
-        HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/39";
-        HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
-
-
     }
 
 }
