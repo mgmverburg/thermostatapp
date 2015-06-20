@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Week Program" >
+        <nl.tue.thermostatv3.CustomDialogPreference
+            android:title="Set to default"
+            android:summary="This will reset the week program to default."
+            android:key="@string/btnDefault"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="About" >
+        <Preference
+            android:title="Version"
+            android:summary="1.0"
+            />
+        <Preference
+            android:title="Thermostat Number"
+            android:summary="39"
+            />
+        <Preference
+            android:title="Heating System Address"
+            android:summary="http://wwwis.win.tue.nl/2id40-ws/39"
+            />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppThemeDefault" parent="Theme.AppCompat.Light">
-        <!-- Customize your theme here. -->
+        <item name="android:windowFullscreen">true</item> <!-- Hides the status bar -->
     </style>
 
 
