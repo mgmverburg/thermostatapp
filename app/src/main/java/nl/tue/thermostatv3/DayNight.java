@@ -143,7 +143,7 @@ public class DayNight extends ActionBarActivity {
                                 vtempDay = 5;
                             }
                             HeatingSystem.put("dayTemperature", Double.toString(vtempDay));
-                            seekBarDay.setProgress((int)vtempDay*10);
+                            seekBarDay.setProgress((int) vtempDay * 10);
                             tempDay.post(new Runnable() {
                                 public void run() {
                                     //To prevent circle from becoming smaller
@@ -200,7 +200,7 @@ public class DayNight extends ActionBarActivity {
                         try {
                             vtempNight = (double) Math.round((vtempNight - 0.1) * 10) / 10;
                             if (vtempNight < 5) {
-                                vtempDay = 5;
+                                vtempNight = 5;
                             }
                             HeatingSystem.put("nightTemperature", Double.toString(vtempNight));
                             seekBarNight.setProgress((int) vtempNight * 10);
@@ -237,7 +237,7 @@ public class DayNight extends ActionBarActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 new Thread(new Runnable() {
                     public void run() {
-                        vtempDay = seekBarDay.getProgress() / 10;
+                        vtempDay = (double)seekBarDay.getProgress() / 10;
                         if (vtempDay < 5) {
                             vtempDay = 5;
                             seekBarDay.setProgress(50);
@@ -278,7 +278,7 @@ public class DayNight extends ActionBarActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 new Thread(new Runnable(){
                     public void run() {
-                        vtempNight = seekBarNight.getProgress() / 10;
+                        vtempNight = (double)seekBarNight.getProgress() / 10;
                         if (vtempNight < 5) {
                             vtempNight = 5;
                             seekBarNight.setProgress(50);
