@@ -5,7 +5,7 @@
         >
         <activity
             android:name=".MainActivity"
-            android:label="Thermometer"
+            android:label="Thermostat"
             android:theme="@style/AppTheme"
             >
             <intent-filter>
@@ -30,6 +30,18 @@
             android:name=".Settings"
             android:theme="@style/AppThemeDefault"
             android:label="Settings">
+        </activity>
+
+        <activity
+            android:name=".ScheduleActivity"
+            android:theme="@style/AppTheme"
+            android:label="Heating control">
+        </activity>
+
+        <activity
+            android:name=".VacationActivity"
+            android:theme="@style/AppTheme"
+            android:label="Heating control">
         </activity>
 
     </application>

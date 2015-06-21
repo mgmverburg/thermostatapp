@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Thermostat</string>
     <string name="main_page">Home</string>
-    <string name="week_overview">Week overview</string>
+    <string name="week_overview">Week Program</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="DayNight">Day/night temperature</string>
-    <string name="btnDefault">aaa</string>
+    <string name="btnDefault"></string>
 
 </resources>
