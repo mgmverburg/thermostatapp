@@ -225,20 +225,7 @@ public class DayNight extends ActionBarActivity {
         seekBarDay.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tempDay.post(new Runnable() {
-                    public void run() {
-                        vtempDay = seekBarDay.getProgress() / 10;
-                        if(vtempDay<5){
-                            vtempDay=5;
-                        }
-                        //To prevent circle from becoming smaller
-                        if (vtempDay >= 10) {
-                            tempDay.setText(vtempDay + " \u2103");
-                        } else {
-                            tempDay.setText(vtempDay + " \u2103" + "  ");
-                        }
-                    }
-                });
+
             }
 
             @Override
@@ -279,13 +266,7 @@ public class DayNight extends ActionBarActivity {
         seekBarNight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                vtempNight = seekBarNight.getProgress() / 10;
-                //To prevent circle from becoming smaller
-                if (vtempNight >= 10) {
-                    tempNight.setText(vtempNight + " \u2103");
-                } else {
-                    tempNight.setText(vtempNight + " \u2103" + "  ");
-                }
+
             }
 
             @Override
