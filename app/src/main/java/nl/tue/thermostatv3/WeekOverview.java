@@ -1555,7 +1555,7 @@ public class WeekOverview extends ActionBarActivity  {
     }
 
     private void addDrawerItems() {
-        String[] osArray = { "Home", "Week program", "Day/night temperature", "Settings", "Help" };
+        String[] osArray = { "Home", "Week program", "Day/night temperature", "Settings"};
         mAdapter = new MySimpleArrayAdapter(this, osArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -1580,8 +1580,6 @@ public class WeekOverview extends ActionBarActivity  {
                 } else if (buttonString.startsWith("Settings")) {
                     Intent intent = new Intent(view.getContext(), Settings.class);
                     startActivity(intent);
-                } else {   //then it must be the help button
-
                 }
             }
         });

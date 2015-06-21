@@ -14,6 +14,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.thermostatapp.util.HeatingSystem;
+import org.thermostatapp.util.Switch;
+import org.thermostatapp.util.WeekProgram;
+
+import java.util.ArrayList;
+
 /**
  * This activity controls the Schedule screen of the Main menu
  */
@@ -26,28 +32,100 @@ public class ScheduleActivity extends ActionBarActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
 
+    Button targetTemp;
+    Button curTemp;
+
+    TextView statusText;
+
+    Thread retrieve;
+    Thread set;
+
+    double targetTempValue;
+    double curTempValue;
+    double dayTemp;
+    double nightTemp;
+
+    String time;
+    String day;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_layout);
 
         // Add components
-        final Button button = (Button) findViewById(R.id.button);
-        final Button plusButton = (Button) findViewById(R.id.plusButton);
+        targetTemp = (Button) findViewById(R.id.button);
+        curTemp = (Button) findViewById(R.id.button2);
 
-        final TextView statusText = (TextView) findViewById(R.id.statusText);
+        Button plusButton = (Button) findViewById(R.id.plusButton);
+
+        statusText = (TextView) findViewById(R.id.statusText);
 
         Button rightB = (Button) findViewById(R.id.rightB);
         Button midB = (Button) findViewById(R.id.midB);
         Button leftB = (Button) findViewById(R.id.leftB);
 
-
-        // "Remove" unneeded components
-        // NEED TO KEEP COMPONENTS IN LAYOUT IN ORDER TO MAINTAIN CORRECT LAYOUT RATIO'S
         plusButton.setVisibility(View.INVISIBLE);
-        //minButton.setVisibility(View.INVISIBLE);
-        //warningText.setVisibility(View.INVISIBLE);
 
+        //Set heatingsystem address
+        HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/39";
+        HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
+
+        // get values from server
+        retrieve = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    targetTempValue = Double.parseDouble(HeatingSystem.get("targetTemperature"));
+                    curTempValue = Double.parseDouble(HeatingSystem.get("currentTemperature"));
+                    dayTemp = Double.parseDouble(HeatingSystem.get("dayTemperature"));
+                    nightTemp = Double.parseDouble(HeatingSystem.get("nightTemperature"));
+                    time = HeatingSystem.get("time");
+                    day = HeatingSystem.get("day");
+                } catch (Exception e) {
+                    System.err.println("Error from getdata" + e);
+                }
+            }
+        });
+        retrieve.start();
+
+        //display values
+        set = new Thread(new Runnable() {
+            public void run() {
+                //Update text
+                try {
+                    Thread.sleep(1000);
+                    curTemp.post(new Runnable() {
+                        public void run() {
+                            curTemp.setText(curTempValue + " \u2103 inside now");
+                        }
+                    });
+                    targetTemp.post(new Runnable() {
+                        public void run() {
+                            targetTemp.setText(targetTempValue + " \u2103");
+                        }
+                    });
+
+                    if(dayTemp == targetTempValue) {
+                        statusText.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                statusText.setText("Current: Day temperature");
+                            }
+                        });
+                    } else{
+                        statusText.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                statusText.setText("Current: Night temperature");
+                            }
+                        });
+                    }
+                } catch(Exception e){
+                    System.err.println("Error from getdata" + e);
+                }
+            }
+        });
+        set.start();
 
         // Layout switching buttons
         leftB.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +160,7 @@ public class ScheduleActivity extends ActionBarActivity {
     }
 
     private void addDrawerItems() {
-        String[] osArray = { "Home", "Week program", "Day/night temperature", "Settings", "Help" };
+        String[] osArray = { "Home", "Week program", "Day/night temperature", "Settings"};
         mAdapter = new MySimpleArrayAdapter(this, osArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -101,11 +179,11 @@ public class ScheduleActivity extends ActionBarActivity {
                     Intent intent = new Intent(view.getContext(), WeekOverview.class);
                     startActivity(intent);
                 } else if (buttonString.startsWith("Day/night temperature")) {
-
+                    Intent intent = new Intent(view.getContext(), DayNight.class);
+                    startActivity(intent);
                 } else if (buttonString.startsWith("Settings")) {
-
-                } else {   //then it must be the help button
-
+                    Intent intent = new Intent(view.getContext(), Settings.class);
+                    startActivity(intent);
                 }
             }
         });

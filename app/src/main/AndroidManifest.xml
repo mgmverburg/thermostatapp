@@ -5,7 +5,7 @@
         >
         <activity
             android:name=".MainActivity"
-            android:label="Thermostat"
+            android:label="@string/main_page"
             android:theme="@style/AppTheme"
             >
             <intent-filter>
@@ -29,19 +29,19 @@
         <activity
             android:name=".Settings"
             android:theme="@style/AppThemeDefault"
-            android:label="Settings">
+            android:label="@string/settings">
         </activity>
 
         <activity
             android:name=".ScheduleActivity"
             android:theme="@style/AppTheme"
-            android:label="Heating control">
+            android:label="@string/main_page">
         </activity>
 
         <activity
             android:name=".VacationActivity"
             android:theme="@style/AppTheme"
-            android:label="Heating control">
+            android:label="@string/main_page">
         </activity>
 
     </application>

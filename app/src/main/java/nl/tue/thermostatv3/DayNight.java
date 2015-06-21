@@ -307,7 +307,7 @@ public class DayNight extends ActionBarActivity {
     }
 
     private void addDrawerItems() {
-        String[] osArray = { "Home", "Week program", "Day/night temperature", "Settings", "Help" };
+        String[] osArray = { "Home", "Week program", "Day/night temperature", "Settings"};
         mAdapter = new MySimpleArrayAdapter(this, osArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -329,9 +329,8 @@ public class DayNight extends ActionBarActivity {
                     Intent intent = new Intent(view.getContext(), DayNight.class);
                     startActivity(intent);
                 } else if (buttonString.startsWith("Settings")) {
-
-                } else {   //then it must be the help button
-
+                    Intent intent = new Intent(view.getContext(), Settings.class);
+                    startActivity(intent);
                 }
             }
         });

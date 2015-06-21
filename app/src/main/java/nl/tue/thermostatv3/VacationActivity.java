@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.thermostatapp.util.HeatingSystem;
+
 /**
  * This activity controls the Manual screen of the Main menu
  */
@@ -28,26 +30,23 @@ public class VacationActivity extends ActionBarActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
 
-    boolean on = false;
-    int decimal = 0;
-    int integ = 21;
+    Thread retrieve;
+    Thread set;
 
-    String STATE_ON = "state on";
+    Button curTemp;
+
+    double targetTempValue;
+
+    boolean state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO Restore activity state
-        if (savedInstanceState != null) {
-            on = savedInstanceState.getBoolean(STATE_ON);
-        } else {
-            on = false;
-        }
         setContentView(R.layout.vacation_layout);
 
         // Add components
-        final Button button = (Button) findViewById(R.id.button);
+        curTemp = (Button) findViewById(R.id.button);
         final Button plusButton = (Button) findViewById(R.id.plusButton);
         final Button minButton = (Button) findViewById(R.id.minButton);
         final Button enableB = (Button) findViewById(R.id.enableB);
@@ -58,23 +57,154 @@ public class VacationActivity extends ActionBarActivity {
         Button midB = (Button) findViewById(R.id.midB);
         Button leftB = (Button) findViewById(R.id.leftB);
 
+
+        //Set heatingsystem address
+        HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/39";
+        HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
+
+        // get values from server
+        retrieve = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    targetTempValue = Double.parseDouble(HeatingSystem.get("targetTemperature"));
+                    if(HeatingSystem.get("weekProgramState").equals("on")) {
+                        state = true;
+                    } else{
+                        state = false;
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error from getdata" + e);
+                }
+            }
+        });
+        retrieve.start();
+
+        //display values
+        set = new Thread(new Runnable() {
+            public void run() {
+                //Update text
+                try {
+                    Thread.sleep(1000);
+                    curTemp.post(new Runnable() {
+                        public void run() {
+                            curTemp.setText(targetTempValue + " \u2103");
+                        }
+                    });
+                    if(state){
+                        statusText.post(new Runnable() {
+                            public void run() {
+                                statusText.setText("Vacation mode: OFF");
+                            }
+                        });
+                        enableB.post(new Runnable() {
+                            public void run() {
+                                enableB.setText("Enable");
+                            }
+                        });
+                        plusButton.post(new Runnable() {
+                            public void run() {
+                                plusButton.setEnabled(true);
+                            }
+                        });
+                        minButton.post(new Runnable() {
+                            public void run() {
+                                minButton.setEnabled(true);
+                            }
+                        });
+                    } else{
+                        statusText.post(new Runnable() {
+                            public void run() {
+                                statusText.setText("Vacation mode: ON");
+                            }
+                        });
+                        enableB.post(new Runnable() {
+                            public void run() {
+                                enableB.setText("Disable");
+                            }
+                        });
+                        plusButton.post(new Runnable(){
+                            public void run(){
+                                plusButton.setEnabled(false);
+                            }
+                        });
+                        minButton.post(new Runnable() {
+                            public void run() {
+                                minButton.setEnabled(false);
+                            }
+                        });
+                    }
+                } catch(Exception e){
+                    System.err.println("Error from getdata" + e);
+                }
+            }
+        });
+        set.start();
+
+
         // Enable Vacation-mode
         enableB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (on) {
-                    statusText.setText("Vacation mode: OFF");
-                    plusButton.setEnabled(true);
-                    minButton.setEnabled(true);
-                    enableB.setText("Enable");
-                    on = false;
-                } else if (!on) {
-                    statusText.setText("Vacation mode: ON");
-                    plusButton.setEnabled(false);
-                    minButton.setEnabled(false);
-                    enableB.setText("Disable");
-                    on = true;
-                }
+                new Thread(new Runnable() {
+                    public void run() {
+                        if (state) {
+                            try {
+                                HeatingSystem.put("weekProgramState", "on");
+                                statusText.post(new Runnable() {
+                                    public void run() {
+                                        statusText.setText("Vacation mode: OFF");
+                                    }
+                                });
+                                enableB.post(new Runnable() {
+                                    public void run() {
+                                        enableB.setText("Enable");
+                                    }
+                                });
+                                plusButton.post(new Runnable() {
+                                    public void run() {
+                                        plusButton.setEnabled(true);
+                                    }
+                                });
+                                minButton.post(new Runnable() {
+                                    public void run() {
+                                        minButton.setEnabled(true);
+                                    }
+                                });
+                                state = false;
+                            } catch (Exception e) {
+                                System.err.println("Error from getdata" + e);
+                            }
+                        } else {
+                            try {
+                                HeatingSystem.put("currentTemperature", Double.toString(targetTempValue));
+                                HeatingSystem.put("weekProgramState", "off");
+                                statusText.post(new Runnable() {
+                                    public void run() {
+                                        statusText.setText("Vacation mode: ON");
+                                    }
+                                });
+                                enableB.post(new Runnable() {
+                                    public void run() {
+                                        enableB.setText("Disable");
+                                    }
+                                });
+                                plusButton.post(new Runnable(){
+                                   public void run(){
+                                       plusButton.setEnabled(false);
+                                   }
+                                });
+                                minButton.post(new Runnable() {
+                                    public void run() {
+                                        minButton.setEnabled(false);
+                                    }
+                                });
+                                state = true;
+                            } catch (Exception e) {
+                                System.err.println("Error from getdata" + e);
+                            }
+                        }
+                    }
+                }).start();
             }
         });
 
@@ -83,46 +213,49 @@ public class VacationActivity extends ActionBarActivity {
         plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                if (integ == 30) {
-                    integ = integ;
-                    decimal = decimal;
-                    statusText.setText("Maximum Temperature!");
-                    statusText.setVisibility(View.VISIBLE);
-
-                    statusText.setText("Vacation mode: OFF");
-                } else {
-                    if (decimal == 9) {
-                        decimal = 0;
-                        integ++;
-                    } else {
-                        decimal++;
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            targetTempValue = (double)Math.round((targetTempValue + 0.1)*10)/10;
+                            if(targetTempValue>30){
+                                targetTempValue = 30;
+                            }
+                            HeatingSystem.put("currentTemperature", Double.toString(targetTempValue));
+                            curTemp.post(new Runnable() {
+                                public void run() {
+                                    curTemp.setText(targetTempValue + " \u2103");
+                                }
+                            });
+                        } catch (Exception e) {
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
-
-                    button.setText(integ + "." + decimal + " \u2103");
-                } }
+                }).start();
+            }
         });
         // Behaviour for - button
         minButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (integ == 5 && decimal == 0) {
-                    integ = integ;
-                    decimal = decimal;
-                    statusText.setText("Minimum Temperature!");
-                    statusText.setVisibility(View.VISIBLE);
-
-                    statusText.setText("Vacation mode: OFF");
-                } else {
-                    if (decimal == 0) {
-                        decimal = 9;
-                        integ--;
-                    } else {
-                        decimal--;
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            targetTempValue = (double)Math.round((targetTempValue - 0.1)*10)/10;
+                            if(targetTempValue>30){
+                                targetTempValue = 30;
+                            }
+                            HeatingSystem.put("currentTemperature", Double.toString(targetTempValue));
+                            curTemp.post(new Runnable() {
+                                public void run() {
+                                    curTemp.setText(targetTempValue + " \u2103");
+                                }
+                            });
+                        } catch (Exception e) {
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
-
-                    button.setText(integ + "." + decimal + " \u2103");
-                } }
+                }).start();
+            }
         });
 
 
@@ -160,7 +293,7 @@ public class VacationActivity extends ActionBarActivity {
     }
 
     private void addDrawerItems() {
-        String[] osArray = { "Home", "Week program", "Day/night temperature", "Settings", "Help" };
+        String[] osArray = { "Home", "Week program", "Day/night temperature", "Settings"};
         mAdapter = new MySimpleArrayAdapter(this, osArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -179,11 +312,11 @@ public class VacationActivity extends ActionBarActivity {
                     Intent intent = new Intent(view.getContext(), WeekOverview.class);
                     startActivity(intent);
                 } else if (buttonString.startsWith("Day/night temperature")) {
-
+                    Intent intent = new Intent(view.getContext(), DayNight.class);
+                    startActivity(intent);
                 } else if (buttonString.startsWith("Settings")) {
-
-                } else {   //then it must be the help button
-
+                    Intent intent = new Intent(view.getContext(), Settings.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -249,7 +382,6 @@ public class VacationActivity extends ActionBarActivity {
 
     // TODO Restore activity state if needed
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putBoolean(STATE_ON, on);
         super.onSaveInstanceState(savedInstanceState);
     }
 }

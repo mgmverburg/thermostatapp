@@ -66,7 +66,7 @@ public class MainActivity extends ActionBarActivity  {
         HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/39";
         HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
 
-        // Set values from server
+        // get values from server
         retrieve = new Thread(new Runnable() {
             public void run() {
                 try {
@@ -80,6 +80,7 @@ public class MainActivity extends ActionBarActivity  {
         });
         retrieve.start();
 
+        //display values
         set = new Thread(new Runnable() {
             public void run() {
                 //Update text
@@ -263,7 +264,7 @@ public class MainActivity extends ActionBarActivity  {
     }
 
     private void addDrawerItems() {
-        String[] osArray = { "Home", "Week program", "Day/night temperature", "Settings", "Help" };
+        String[] osArray = { "Home", "Week program", "Day/night temperature", "Settings"};
         mAdapter = new MySimpleArrayAdapter(this, osArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -287,8 +288,6 @@ public class MainActivity extends ActionBarActivity  {
                 } else if (buttonString.startsWith("Settings")) {
                     Intent intent = new Intent(view.getContext(), Settings.class);
                     startActivity(intent);
-                } else {   //then it must be the help button
-
                 }
             }
         });

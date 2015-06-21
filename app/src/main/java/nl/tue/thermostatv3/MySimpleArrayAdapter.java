@@ -41,10 +41,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
             imageView.setImageResource(R.mipmap.ic_daynight);
         } else if (s.startsWith("Settings")) {
             imageView.setImageResource(R.drawable.ic_settings);
-        } else {
-            imageView.setImageResource(R.drawable.ic_help);
         }
-
         return rowView;
     }
 }

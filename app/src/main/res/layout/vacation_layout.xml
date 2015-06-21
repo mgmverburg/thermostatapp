@@ -21,7 +21,7 @@
         <Button
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:text="21.0 \u2103"
+            android:text=""
             android:id="@+id/button"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
