@@ -345,7 +345,7 @@ public class DayNight extends ActionBarActivity {
                     Intent intent = new Intent(view.getContext(), WeekOverview.class);
                     startActivity(intent);
                 } else if (buttonString.startsWith("Day/night temperature")) {
-                    Intent intent = new Intent(view.getContext(), Settings.class);
+                    Intent intent = new Intent(view.getContext(), DayNight.class);
                     startActivity(intent);
                 } else if (buttonString.startsWith("Settings")) {
 
