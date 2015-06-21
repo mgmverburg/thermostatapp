@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import org.thermostatapp.util.HeatingSystem;
+
 
 /**
  * This activity controls the Manual screen of the Main menu
@@ -30,101 +32,201 @@ public class MainActivity extends ActionBarActivity  {
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
 
-    static final String STATE_DECIMAL = "decimal temp";
-    static final String STATE_INTEGER = "integer temp";
+    double targetTempValue;
+    double curTempValue;
 
-    int decimal = 0;
-    int integ = 21;
+    SeekBar tempBar;
+
+    Button targetTemp;
+    Button curTemp;
+
+    Thread retrieve;
+    Thread set;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO Restore activity state if needed
-        if (savedInstanceState != null) {
-            decimal = savedInstanceState.getInt(STATE_DECIMAL);
-            integ = savedInstanceState.getInt(STATE_INTEGER);
-        } else {
-            decimal = 0;
-            integ = 21;
-        }
         setContentView(R.layout.main_menu);
 
         // Adding components
-        final Button button = (Button) findViewById(R.id.button);
-        final Button plusButton = (Button) findViewById(R.id.plusButton);
+        targetTemp = (Button) findViewById(R.id.button);
+        curTemp = (Button) findViewById(R.id.button2);
+
+        Button plusButton = (Button) findViewById(R.id.plusButton);
         Button minButton = (Button) findViewById(R.id.minButton);
-
-        final TextView warningText = (TextView) findViewById(R.id.statusText);
-
-        warningText.setVisibility(View.INVISIBLE);
 
         Button rightB = (Button) findViewById(R.id.rightB);
         Button midB = (Button) findViewById(R.id.midB);
         Button leftB = (Button) findViewById(R.id.leftB);
 
-        SeekBar tempBar = (SeekBar)findViewById(R.id.tempBar);
-        tempBar.setProgress(decimal);
+        tempBar = (SeekBar)findViewById(R.id.tempBar);
 
-        // Adding animations
-        final Animation animationFadeIn = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        final Animation animationFadeOut = AnimationUtils.loadAnimation(this, R.anim.fadeout);
+        //Set heatingsystem address
+        HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/39";
+        HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
 
-        // "Remove" unneeded components
-        // NEED TO KEEP COMPONENTS IN LAYOUT IN ORDER TO MAINTAIN CORRECT LAYOUT RATIO'S
-        //plusButton.setVisibility(View.INVISIBLE);
-        //minButton.setVisibility(View.INVISIBLE);
-        //warningText.setVisibility(View.INVISIBLE);
+        // Set values from server
+        retrieve = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    targetTempValue = Double.parseDouble(HeatingSystem.get("targetTemperature"));
+                    curTempValue = Double.parseDouble(HeatingSystem.get("currentTemperature"));
+                    tempBar.setProgress((int) targetTempValue * 10);
+                } catch (Exception e) {
+                    System.err.println("Error from getdata" + e);
+                }
+            }
+        });
+        retrieve.start();
 
-        // Starting conditions
-        button.setText(integ + "." + decimal + " \u2103");
+        set = new Thread(new Runnable() {
+            public void run() {
+                //Update text
+                try {
+                    Thread.sleep(1000);
+                    curTemp.post(new Runnable() {
+                        public void run() {
+                            curTemp.setText(curTempValue + " \u2103 inside now");
+                        }
+                    });
+                    targetTemp.post(new Runnable() {
+                        public void run() {
+                            targetTemp.setText(targetTempValue + " \u2103");
+                        }
+                    });
+                } catch(Exception e){
+                    System.err.println("Error from getdata" + e);
+                }
+            }
+        });
+        set.start();
+
+        //Update current temp when it is clicked.
+        curTemp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                new Thread(new Runnable(){
+                    public void run(){
+                        try {
+                            curTempValue = Double.parseDouble(HeatingSystem.get("currentTemperature"));
+                            curTemp.post(new Runnable() {
+                                public void run() {
+                                    curTemp.setText(curTempValue  + " \u2103 inside now");
+                                }
+                            });
+                        } catch (Exception e) {
+                            System.err.println("Error from getdata" + e);
+                        }
+                    }
+                }).start();
+            }
+        });
 
         // Behaviour for + button
         plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                if (integ == 30) {
-                    integ = integ;
-                    decimal = decimal;
-                    warningText.setText("Maximum Temperature!");
-                    warningText.setVisibility(View.VISIBLE);
-                    warningText.startAnimation(animationFadeIn);
-                    warningText.startAnimation(animationFadeOut);
-                    warningText.setVisibility(View.INVISIBLE);
-                } else {
-                    if (decimal == 9) {
-                        decimal = 0;
-                        integ++;
-                    } else {
-                        decimal++;
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            targetTempValue = (double)Math.round((targetTempValue + 0.1)*10)/10;
+                            if(targetTempValue>30){
+                                targetTempValue = 30;
+                            }
+                            HeatingSystem.put("currentTemperature", Double.toString(targetTempValue));
+                            curTempValue = Double.parseDouble(HeatingSystem.get("currentTemperature"));
+                            curTemp.post(new Runnable() {
+                                public void run() {
+                                    curTemp.setText(curTempValue + " \u2103 inside now");
+                                }
+                            });
+                            targetTemp.post(new Runnable() {
+                                public void run() {
+                                    targetTemp.setText(targetTempValue + " \u2103");
+                                }
+                            });
+                            tempBar.setProgress((int) targetTempValue * 10);
+                        } catch (Exception e) {
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
-
-                    button.setText(integ + "." + decimal + " \u2103");
-                } }
+                }).start();
+            }
         });
+
         // Behaviour for - button
         minButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (integ == 5 && decimal == 0) {
-                    integ = integ;
-                    decimal = decimal;
-                    warningText.setText("Minimum Temperature!");
-                    warningText.setVisibility(View.VISIBLE);
-                    warningText.startAnimation(animationFadeIn);
-                    warningText.startAnimation(animationFadeOut);
-                    warningText.setVisibility(View.INVISIBLE);
-                } else {
-                    if (decimal == 0) {
-                        decimal = 9;
-                        integ--;
-                    } else {
-                        decimal--;
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            targetTempValue = (double)Math.round((targetTempValue - 0.1)*10)/10;
+                            if(targetTempValue<5){
+                                targetTempValue = 5;
+                            }
+                            HeatingSystem.put("currentTemperature", Double.toString(targetTempValue));
+                            curTempValue = Double.parseDouble(HeatingSystem.get("currentTemperature"));
+                            curTemp.post(new Runnable() {
+                                public void run() {
+                                    curTemp.setText(curTempValue + " \u2103 inside now");
+                                }
+                            });
+                            targetTemp.post(new Runnable() {
+                                public void run() {
+                                    targetTemp.setText(targetTempValue + " \u2103");
+                                }
+                            });
+                            tempBar.setProgress((int) targetTempValue * 10);
+                        } catch (Exception e) {
+                            System.err.println("Error from getdata" + e);
+                        }
                     }
+                }).start();
+            }
+        });
 
-                    button.setText(integ + "." + decimal + " \u2103");
-                } }
+        //Seekbar change
+        tempBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        targetTempValue = (double)tempBar.getProgress() / 10;
+                        if (targetTempValue < 5) {
+                            targetTempValue = 5;
+                            tempBar.setProgress(50);
+                        }
+                        try {
+                            HeatingSystem.put("currentTemperature", Double.toString(targetTempValue));
+                            curTempValue = Double.parseDouble(HeatingSystem.get("currentTemperature"));
+                        } catch (Exception e) {
+                            System.err.println("Error from getdata" + e);
+                        }
+                        curTemp.post(new Runnable() {
+                            public void run() {
+                                curTemp.setText(curTempValue + " \u2103 inside now");
+                            }
+                        });
+                        targetTemp.post(new Runnable() {
+                            public void run() {
+                                targetTemp.setText(targetTempValue + " \u2103");
+                            }
+                        });
+                    }
+                }).start();
+            }
         });
 
         // Layout switching buttons
@@ -260,11 +362,8 @@ public class MainActivity extends ActionBarActivity  {
         return super.onOptionsItemSelected(item);
     }
 
-    // TODO Restore activity state if needed
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putInt(STATE_DECIMAL, decimal);
-        savedInstanceState.putInt(STATE_INTEGER, integ);
         super.onSaveInstanceState(savedInstanceState);
     }
 }

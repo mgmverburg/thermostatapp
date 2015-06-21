@@ -58,16 +58,6 @@ public class VacationActivity extends ActionBarActivity {
         Button midB = (Button) findViewById(R.id.midB);
         Button leftB = (Button) findViewById(R.id.leftB);
 
-        // Adding animations
-        final Animation animationFadeIn = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        final Animation animationFadeOut = AnimationUtils.loadAnimation(this, R.anim.fadeout);
-
-        // "Remove" unneeded components
-        // NEED TO KEEP COMPONENTS IN LAYOUT IN ORDER TO MAINTAIN CORRECT LAYOUT RATIO'S
-        //plusButton.setVisibility(View.INVISIBLE);
-        //minButton.setVisibility(View.INVISIBLE);
-        //warningText.setVisibility(View.INVISIBLE);
-
         // Enable Vacation-mode
         enableB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +89,7 @@ public class VacationActivity extends ActionBarActivity {
                     decimal = decimal;
                     statusText.setText("Maximum Temperature!");
                     statusText.setVisibility(View.VISIBLE);
-                    statusText.startAnimation(animationFadeIn);
-                    statusText.startAnimation(animationFadeOut);
+
                     statusText.setText("Vacation mode: OFF");
                 } else {
                     if (decimal == 9) {
@@ -122,8 +111,7 @@ public class VacationActivity extends ActionBarActivity {
                     decimal = decimal;
                     statusText.setText("Minimum Temperature!");
                     statusText.setVisibility(View.VISIBLE);
-                    statusText.startAnimation(animationFadeIn);
-                    statusText.startAnimation(animationFadeOut);
+
                     statusText.setText("Vacation mode: OFF");
                 } else {
                     if (decimal == 0) {

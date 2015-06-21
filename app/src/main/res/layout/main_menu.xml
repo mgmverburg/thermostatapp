@@ -21,7 +21,6 @@
         <Button
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:text="21.0 \u2103"
             android:id="@+id/button"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -50,7 +49,6 @@
         <Button
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:text="20.0 \u2103 \n Inside now"
             android:id="@+id/button2"
             android:layout_alignBottom="@+id/plusButton"
             android:layout_toEndOf="@+id/plusButton"
@@ -61,7 +59,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="warningText"
             android:id="@+id/statusText"
             android:layout_below="@+id/minButton"
             android:layout_centerHorizontal="true"
@@ -101,11 +98,20 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/tempBar"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/button"
             android:indeterminate="false"
-            android:max="30"
-            android:rotation="270" />
+            android:max="300"
+            android:layout_alignTop="@+id/statusText"
+            android:layout_alignStart="@+id/button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Set temperature between 5 and 30 &#x2103;"
+            android:id="@+id/textView4"
+            android:layout_alignParentTop="true"
+            android:layout_alignEnd="@+id/button2"
+            android:background="@color/background_color_content"/>
 
     </RelativeLayout>
 

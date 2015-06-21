@@ -148,11 +148,12 @@ public class HeatingSystem {
      * Retrieves all data except for weekProgram
      * @param attribute_name
      *            = { "day", "time", "currentTemperature", "dayTemperature",
-     *            "nightTemperature", "weekProgramState" }; Note that
+     *            "nightTemperature", "weekProgramState", "targetTemperature" }; Note that
      *            "weekProgram" has not been included, because it has a more
-     *            complex value than a single value. Therefore the funciton
+     *            complex value than a single value. Therefore the function
      *            getWeekProgram() is implemented which return a WeekProgram
      *            object that can be easily altered.
+     *            targetTemperature added by Stan on 21-6-2015
      */
     public static String get(String attribute_name) throws ConnectException,
             IllegalArgumentException {
@@ -163,9 +164,9 @@ public class HeatingSystem {
         String link = "";
         boolean match = false;
         String[] valid_names = { "day", "time", "currentTemperature",
-                "dayTemperature", "nightTemperature", "weekProgramState" };
+                "dayTemperature", "nightTemperature", "weekProgramState", "targetTemperature" };
         String[] tag_names = { "current_day", "time", "current_temperature",
-                "day_temperature", "night_temperature", "week_program_state" };
+                "day_temperature", "night_temperature", "week_program_state", "target_temperature" };
         int i;
         for (i = 0; i < valid_names.length; i++) {
             if (attribute_name.equalsIgnoreCase(valid_names[i])) {
