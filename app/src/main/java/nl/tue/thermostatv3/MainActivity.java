@@ -3,6 +3,7 @@ package nl.tue.thermostatv3;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PersistableBundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.thermostatapp.util.HeatingSystem;
 
@@ -40,6 +42,8 @@ public class MainActivity extends ActionBarActivity  {
     Button targetTemp;
     Button curTemp;
 
+    Handler handler;
+
     Thread retrieve;
     Thread set;
 
@@ -62,6 +66,8 @@ public class MainActivity extends ActionBarActivity  {
 
         tempBar = (SeekBar)findViewById(R.id.tempBar);
 
+        handler = new Handler();
+
         //Set heatingsystem address
         HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/39";
         HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
@@ -74,6 +80,12 @@ public class MainActivity extends ActionBarActivity  {
                     curTempValue = Double.parseDouble(HeatingSystem.get("currentTemperature"));
                     tempBar.setProgress((int) targetTempValue * 10);
                 } catch (Exception e) {
+                    handler.post(new Runnable() { // This thread runs in the UI
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                        }
+                    });
                     System.err.println("Error from getdata" + e);
                 }
             }
@@ -97,6 +109,12 @@ public class MainActivity extends ActionBarActivity  {
                         }
                     });
                 } catch(Exception e){
+                    handler.post(new Runnable() { // This thread runs in the UI
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                        }
+                    });
                     System.err.println("Error from getdata" + e);
                 }
             }
@@ -117,6 +135,12 @@ public class MainActivity extends ActionBarActivity  {
                                 }
                             });
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -149,6 +173,12 @@ public class MainActivity extends ActionBarActivity  {
                             });
                             tempBar.setProgress((int) targetTempValue * 10);
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -181,6 +211,12 @@ public class MainActivity extends ActionBarActivity  {
                             });
                             tempBar.setProgress((int) targetTempValue * 10);
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -213,6 +249,12 @@ public class MainActivity extends ActionBarActivity  {
                             HeatingSystem.put("currentTemperature", Double.toString(targetTempValue));
                             curTempValue = Double.parseDouble(HeatingSystem.get("currentTemperature"));
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                         curTemp.post(new Runnable() {

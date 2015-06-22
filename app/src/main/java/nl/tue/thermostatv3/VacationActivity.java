@@ -3,6 +3,7 @@ package nl.tue.thermostatv3;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.thermostatapp.util.HeatingSystem;
 
@@ -34,6 +36,8 @@ public class VacationActivity extends ActionBarActivity {
     Thread set;
 
     Button curTemp;
+
+    Handler handler;
 
     double targetTempValue;
 
@@ -57,6 +61,7 @@ public class VacationActivity extends ActionBarActivity {
         Button midB = (Button) findViewById(R.id.midB);
         Button leftB = (Button) findViewById(R.id.leftB);
 
+        handler = new Handler();
 
         //Set heatingsystem address
         HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/39";
@@ -73,6 +78,12 @@ public class VacationActivity extends ActionBarActivity {
                         state = false;
                     }
                 } catch (Exception e) {
+                    handler.post(new Runnable() { // This thread runs in the UI
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                        }
+                    });
                     System.err.println("Error from getdata" + e);
                 }
             }
@@ -90,7 +101,7 @@ public class VacationActivity extends ActionBarActivity {
                             curTemp.setText(targetTempValue + " \u2103");
                         }
                     });
-                    if(state){
+                    if(!state){
                         statusText.post(new Runnable() {
                             public void run() {
                                 statusText.setText("Vacation mode: OFF");
@@ -134,6 +145,12 @@ public class VacationActivity extends ActionBarActivity {
                         });
                     }
                 } catch(Exception e){
+                    handler.post(new Runnable() { // This thread runs in the UI
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                        }
+                    });
                     System.err.println("Error from getdata" + e);
                 }
             }
@@ -172,6 +189,12 @@ public class VacationActivity extends ActionBarActivity {
                                 });
                                 state = false;
                             } catch (Exception e) {
+                                handler.post(new Runnable() { // This thread runs in the UI
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                    }
+                                });
                                 System.err.println("Error from getdata" + e);
                             }
                         } else {
@@ -200,6 +223,12 @@ public class VacationActivity extends ActionBarActivity {
                                 });
                                 state = true;
                             } catch (Exception e) {
+                                handler.post(new Runnable() { // This thread runs in the UI
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                    }
+                                });
                                 System.err.println("Error from getdata" + e);
                             }
                         }
@@ -227,6 +256,12 @@ public class VacationActivity extends ActionBarActivity {
                                 }
                             });
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -251,6 +286,12 @@ public class VacationActivity extends ActionBarActivity {
                                 }
                             });
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }

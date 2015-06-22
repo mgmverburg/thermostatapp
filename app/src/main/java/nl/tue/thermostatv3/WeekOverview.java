@@ -3,6 +3,7 @@ package nl.tue.thermostatv3;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -54,6 +55,7 @@ public class WeekOverview extends ActionBarActivity  {
     Boolean selected;
     Boolean bool = false;
     android.widget.Switch stateSwitches[];
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,8 @@ public class WeekOverview extends ActionBarActivity  {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        handler = new Handler();
 
         //Set heatingsystem address
         HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/39";
@@ -118,6 +122,12 @@ public class WeekOverview extends ActionBarActivity  {
                 try {
                     wpg = HeatingSystem.getWeekProgram();
                 } catch (Exception e){
+                    handler.post(new Runnable() { // This thread runs in the UI
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                        }
+                    });
                     System.err.println("Error from getdata" + e);
                 }
             }
@@ -480,6 +490,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 });
 
                             } catch (Exception e) {
+                                handler.post(new Runnable() { // This thread runs in the UI
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                    }
+                                });
                                 System.err.println("Error from getdata" + e);
                             }
                         }
@@ -504,6 +520,12 @@ public class WeekOverview extends ActionBarActivity  {
                         try {
                             HeatingSystem.setWeekProgram(wpg);
                         } catch (Exception e){
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -526,6 +548,12 @@ public class WeekOverview extends ActionBarActivity  {
                         try {
                             HeatingSystem.setWeekProgram(wpg);
                         } catch (Exception e){
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -548,6 +576,12 @@ public class WeekOverview extends ActionBarActivity  {
                         try {
                             HeatingSystem.setWeekProgram(wpg);
                         } catch (Exception e){
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -570,6 +604,12 @@ public class WeekOverview extends ActionBarActivity  {
                         try {
                             HeatingSystem.setWeekProgram(wpg);
                         } catch (Exception e){
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -592,6 +632,12 @@ public class WeekOverview extends ActionBarActivity  {
                         try {
                             HeatingSystem.setWeekProgram(wpg);
                         } catch (Exception e){
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -614,6 +660,12 @@ public class WeekOverview extends ActionBarActivity  {
                         try {
                             HeatingSystem.setWeekProgram(wpg);
                         } catch (Exception e){
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -636,6 +688,12 @@ public class WeekOverview extends ActionBarActivity  {
                         try {
                             HeatingSystem.setWeekProgram(wpg);
                         } catch (Exception e){
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -658,6 +716,12 @@ public class WeekOverview extends ActionBarActivity  {
                         try {
                             HeatingSystem.setWeekProgram(wpg);
                         } catch (Exception e){
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -680,6 +744,12 @@ public class WeekOverview extends ActionBarActivity  {
                         try {
                             HeatingSystem.setWeekProgram(wpg);
                         } catch (Exception e){
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -702,6 +772,12 @@ public class WeekOverview extends ActionBarActivity  {
                         try {
                             HeatingSystem.setWeekProgram(wpg);
                         } catch (Exception e){
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -733,7 +809,17 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(0).getType();
                                 wpg = wpg.setSwitch(wpg, day, 0, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[0].post(new Runnable() {
                                     public void run() {
@@ -771,7 +857,17 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(0).getType();
                                 wpg = wpg.setSwitch(wpg, day, 0, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[0].post(new Runnable() {
                                     public void run() {
@@ -807,7 +903,17 @@ public class WeekOverview extends ActionBarActivity  {
                                 System.out.println(state);
                                 type = switches.get(1).getType();
                                 wpg = wpg.setSwitch(wpg, day, 1, state, input, type);
-                                HeatingSystem.setWeekProgram(wpg);
+                                try {
+                                    HeatingSystem.setWeekProgram(wpg);
+                                } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                    System.err.println("Error from getdata" + e);
+                                }
                             } else {
                                 fieldSwitches[1].post(new Runnable() {
                                     public void run() {
@@ -848,6 +954,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }
                             } else {
@@ -888,6 +1000,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }
                             } else {
@@ -930,6 +1048,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }
                             } else {
@@ -970,6 +1094,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }
                             } else {
@@ -1012,6 +1142,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }
                             } else {
@@ -1052,6 +1188,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }
                             } else {
@@ -1094,6 +1236,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }
                             } else {
@@ -1134,6 +1282,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }
                             } else {
@@ -1176,6 +1330,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }
                             } else {
@@ -1216,6 +1376,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }
                             } else {
@@ -1258,6 +1424,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }                            } else {
                                 fieldSwitches[6].post(new Runnable() {
@@ -1297,6 +1469,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }                            } else {
                                 fieldSwitches[7].post(new Runnable() {
@@ -1338,6 +1516,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }                            } else {
                                 fieldSwitches[7].post(new Runnable() {
@@ -1377,6 +1561,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }                            } else {
                                 fieldSwitches[8].post(new Runnable() {
@@ -1418,6 +1608,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }                            } else {
                                 fieldSwitches[8].post(new Runnable() {
@@ -1457,6 +1653,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }                            } else {
                                 fieldSwitches[9].post(new Runnable() {
@@ -1498,6 +1700,12 @@ public class WeekOverview extends ActionBarActivity  {
                                 try {
                                     HeatingSystem.setWeekProgram(wpg);
                                 } catch (Exception e){
+                                    handler.post(new Runnable() { // This thread runs in the UI
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                                     System.err.println("Error from getdata" + e);
                                 }                            } else {
                                 fieldSwitches[9].post(new Runnable() {

@@ -3,6 +3,7 @@ package nl.tue.thermostatv3;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.thermostatapp.util.HeatingSystem;
 import org.thermostatapp.util.Switch;
@@ -51,6 +53,8 @@ public class ScheduleActivity extends ActionBarActivity {
     String day;
     String type;
 
+    Handler handler;
+
     Boolean foundSwitch = false;
     Boolean vacationMode = false;
 
@@ -80,6 +84,8 @@ public class ScheduleActivity extends ActionBarActivity {
         Button midB = (Button) findViewById(R.id.midB);
         Button leftB = (Button) findViewById(R.id.leftB);
 
+        handler = new Handler();
+
         plusButton.setVisibility(View.INVISIBLE);
 
         //Set heatingsystem address
@@ -98,6 +104,12 @@ public class ScheduleActivity extends ActionBarActivity {
                     time = HeatingSystem.get("time");
                     day = HeatingSystem.get("day");
                 } catch (Exception e) {
+                    handler.post(new Runnable() { // This thread runs in the UI
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                        }
+                    });
                     System.err.println("Error from getdata" + e);
                 }
             }
@@ -159,6 +171,12 @@ public class ScheduleActivity extends ActionBarActivity {
                         });
                     }
                 } catch(Exception e){
+                    handler.post(new Runnable() { // This thread runs in the UI
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                        }
+                    });
                     System.err.println("Error from getdata" + e);
                 }
             }
@@ -199,7 +217,8 @@ public class ScheduleActivity extends ActionBarActivity {
 
     //Returns next enabled switch
     private String findNextSwitch(){
-        timeSplit = time.split(":");
+        if(!(time == null)) {
+            timeSplit = time.split(":");
             new Thread(new Runnable() {
                 public void run() {
                     try {
@@ -207,26 +226,26 @@ public class ScheduleActivity extends ActionBarActivity {
                         switches = wpg.getSwitches(day);
 
                         //Add all enabled switches to arraylist times
-                        for(int i = 0; i<10; i++) {
+                        for (int i = 0; i < 10; i++) {
                             if (switches.get(i).getState()) {
-                                if(type == "day"){
-                                    if(!switches.get(i).getType().equals(type)){
+                                if (type == "day") {
+                                    if (!switches.get(i).getType().equals(type)) {
                                         times.add(switches.get(i).getTime());
                                     }
                                 }
-                                if(type == "night"){
-                                    if(!switches.get(i).getType().equals(type)){
+                                if (type == "night") {
+                                    if (!switches.get(i).getType().equals(type)) {
                                         times.add(switches.get(i).getTime());
                                     }
                                 }
-                                if(type == "manual"){
+                                if (type == "manual") {
                                     times.add(switches.get(i).getTime());
                                 }
                             }
                         }
 
                         //get next switch
-                        for(int i = 0; i<times.size(); i++) {
+                        for (int i = 0; i < times.size(); i++) {
                             String[] tempSplit = times.get(i).split(":");
                             if (Integer.parseInt(tempSplit[0]) > Integer.parseInt(timeSplit[0])) {
                                 if (nextSwitchTemp.equals("")) {
@@ -242,7 +261,7 @@ public class ScheduleActivity extends ActionBarActivity {
                                     nextSwitchTempHours = Integer.parseInt(tempSplit[0]);
                                     nextSwitchTempMinutes = Integer.parseInt(tempSplit[1]);
                                 }
-                            } else if(Integer.parseInt(tempSplit[0]) == Integer.parseInt(timeSplit[0]) && Integer.parseInt(tempSplit[1]) > Integer.parseInt(timeSplit[1])) {
+                            } else if (Integer.parseInt(tempSplit[0]) == Integer.parseInt(timeSplit[0]) && Integer.parseInt(tempSplit[1]) > Integer.parseInt(timeSplit[1])) {
                                 if (nextSwitchTemp.equals("")) {
                                     nextSwitchTemp = times.get(i);
                                     nextSwitchTempHours = Integer.parseInt(tempSplit[0]);
@@ -258,21 +277,28 @@ public class ScheduleActivity extends ActionBarActivity {
                                 }
                             }
                         }
-                        if(!nextSwitchTemp.equals("")) {
+                        if (!nextSwitchTemp.equals("")) {
                             nextSwitch = nextSwitchTemp;
                             foundSwitch = true;
-                        } else{
+                        } else {
                             foundSwitch = true;
                         }
-                    } catch(Exception e) {
-                        System.err.println("Error from getdata" + e);
+                    } catch (Exception e) {
+                        handler.post(new Runnable() { // This thread runs in the UI
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                            }
+                        });
                         //to prevent infinite loop
                         foundSwitch = true;
+                        System.err.println("Error from getdata" + e);
                     }
                 }
             }).start();
-        while(!foundSwitch) {
+            while (!foundSwitch) {
 
+            }
         }
         return nextSwitch;
     }

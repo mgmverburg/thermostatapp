@@ -3,6 +3,7 @@ package nl.tue.thermostatv3;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.thermostatapp.util.*;
 
@@ -38,6 +40,8 @@ public class DayNight extends ActionBarActivity {
     SeekBar seekBarDay;
     SeekBar seekBarNight;
 
+    Handler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +55,8 @@ public class DayNight extends ActionBarActivity {
 
         addDrawerItems();
         setupDrawer();
+
+        handler = new Handler();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -96,6 +102,12 @@ public class DayNight extends ActionBarActivity {
                         }
                     });
                 } catch (Exception e) {
+                    handler.post(new Runnable() { // This thread runs in the UI
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                        }
+                    });
                     System.err.println("Error from getdata" + e);
                 }
             }
@@ -125,6 +137,12 @@ public class DayNight extends ActionBarActivity {
                                 }
                             });
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -155,6 +173,12 @@ public class DayNight extends ActionBarActivity {
                                 }
                             });
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -185,6 +209,12 @@ public class DayNight extends ActionBarActivity {
                                 }
                             });
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -215,6 +245,12 @@ public class DayNight extends ActionBarActivity {
                                 }
                             });
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                     }
@@ -245,6 +281,12 @@ public class DayNight extends ActionBarActivity {
                         try {
                             HeatingSystem.put("dayTemperature", Double.toString(vtempDay));
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                         //Update textviews
@@ -286,6 +328,12 @@ public class DayNight extends ActionBarActivity {
                         try {
                             HeatingSystem.put("nightTemperature", Double.toString(vtempNight));
                         } catch (Exception e) {
+                            handler.post(new Runnable() { // This thread runs in the UI
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Could not connect to server. Please try again later.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             System.err.println("Error from getdata" + e);
                         }
                         //Update textviews
