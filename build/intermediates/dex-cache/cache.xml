@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="D:\thermostatapp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.0 rc2"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="D:\thermostatapp\app\build\intermediates\pre-dexed\debug\classes-e0a225914476a781159921aa9877d8035a1b1c73.jar" />
-    </item>
-    <item
         jar="D:\thermostatapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="23.0.0 rc2"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
         <dex dex="D:\thermostatapp\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-97a736a325597c896f1c5774044753c0faaa7bf7.jar" />
+    </item>
+    <item
+        jar="D:\thermostatapp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0 rc2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="D:\thermostatapp\app\build\intermediates\pre-dexed\debug\classes-e0a225914476a781159921aa9877d8035a1b1c73.jar" />
     </item>
     <item
         jar="D:\thermostatapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"

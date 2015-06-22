@@ -19,6 +19,8 @@ import org.thermostatapp.util.Switch;
 import org.thermostatapp.util.WeekProgram;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
 /**
  * This activity controls the Schedule screen of the Main menu
@@ -47,6 +49,19 @@ public class ScheduleActivity extends ActionBarActivity {
 
     String time;
     String day;
+    String type;
+
+    Boolean foundSwitch = false;
+    Boolean vacationMode = false;
+
+    String nextSwitch = "00:00";
+    String[] timeSplit;
+    ArrayList<String> times = new ArrayList<String>();
+    String nextSwitchTemp = "";
+    int nextSwitchTempHours = 0;
+    int nextSwitchTempMinutes = 0;
+    WeekProgram wpg;
+    ArrayList<Switch> switches;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +94,7 @@ public class ScheduleActivity extends ActionBarActivity {
                     curTempValue = Double.parseDouble(HeatingSystem.get("currentTemperature"));
                     dayTemp = Double.parseDouble(HeatingSystem.get("dayTemperature"));
                     nightTemp = Double.parseDouble(HeatingSystem.get("nightTemperature"));
+                    vacationMode = HeatingSystem.getVacationMode();
                     time = HeatingSystem.get("time");
                     day = HeatingSystem.get("day");
                 } catch (Exception e) {
@@ -105,18 +121,40 @@ public class ScheduleActivity extends ActionBarActivity {
                         }
                     });
 
-                    if(dayTemp == targetTempValue) {
-                        statusText.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                statusText.setText("Current: Day temperature");
-                            }
-                        });
+                    if(!vacationMode){
+                        if(dayTemp == targetTempValue) {
+                            statusText.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    type = "day";
+                                    String nextSwitch = findNextSwitch();
+                                    statusText.setText("Current: Day temperature, switches to night at " + nextSwitch);
+                             }
+                            });
+                        } else if(nightTemp == targetTempValue){
+                            statusText.post(new Runnable() {
+                                 @Override
+                                 public void run() {
+                                     type = "night";
+                                     String nextSwitch = findNextSwitch();
+                                     statusText.setText("Current: Night temperature, switches to day at " + nextSwitch);
+                                 }
+                             });
+                        } else if(!vacationMode) {
+                            statusText.post(new Runnable() {
+                                 @Override
+                                 public void run() {
+                                     type = "manual";
+                                     String nextSwitch = findNextSwitch();
+                                     statusText.setText("Current: Manual, switches at " + nextSwitch);
+                                 }
+                             });
+                        }
                     } else{
-                        statusText.post(new Runnable() {
+                        statusText.post(new Runnable(){
                             @Override
                             public void run() {
-                                statusText.setText("Current: Night temperature");
+                                statusText.setText("Current: Vacation mode enabled");
                             }
                         });
                     }
@@ -157,6 +195,86 @@ public class ScheduleActivity extends ActionBarActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+    }
+
+    //Returns next enabled switch
+    private String findNextSwitch(){
+        timeSplit = time.split(":");
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        wpg = HeatingSystem.getWeekProgram();
+                        switches = wpg.getSwitches(day);
+
+                        //Add all enabled switches to arraylist times
+                        for(int i = 0; i<10; i++) {
+                            if (switches.get(i).getState()) {
+                                if(type == "day"){
+                                    if(!switches.get(i).getType().equals(type)){
+                                        times.add(switches.get(i).getTime());
+                                    }
+                                }
+                                if(type == "night"){
+                                    if(!switches.get(i).getType().equals(type)){
+                                        times.add(switches.get(i).getTime());
+                                    }
+                                }
+                                if(type == "manual"){
+                                    times.add(switches.get(i).getTime());
+                                }
+                            }
+                        }
+
+                        //get next switch
+                        for(int i = 0; i<times.size(); i++) {
+                            String[] tempSplit = times.get(i).split(":");
+                            if (Integer.parseInt(tempSplit[0]) > Integer.parseInt(timeSplit[0])) {
+                                if (nextSwitchTemp.equals("")) {
+                                    nextSwitchTemp = times.get(i);
+                                    nextSwitchTempHours = Integer.parseInt(tempSplit[0]);
+                                    nextSwitchTempMinutes = Integer.parseInt(tempSplit[1]);
+                                } else if (Integer.parseInt(tempSplit[0]) < nextSwitchTempHours) {
+                                    nextSwitchTemp = times.get(i);
+                                    nextSwitchTempHours = Integer.parseInt(tempSplit[0]);
+                                    nextSwitchTempMinutes = Integer.parseInt(tempSplit[1]);
+                                } else if (Integer.parseInt(tempSplit[0]) == nextSwitchTempHours && Integer.parseInt(tempSplit[1]) < nextSwitchTempMinutes) {
+                                    nextSwitchTemp = times.get(i);
+                                    nextSwitchTempHours = Integer.parseInt(tempSplit[0]);
+                                    nextSwitchTempMinutes = Integer.parseInt(tempSplit[1]);
+                                }
+                            } else if(Integer.parseInt(tempSplit[0]) == Integer.parseInt(timeSplit[0]) && Integer.parseInt(tempSplit[1]) > Integer.parseInt(timeSplit[1])) {
+                                if (nextSwitchTemp.equals("")) {
+                                    nextSwitchTemp = times.get(i);
+                                    nextSwitchTempHours = Integer.parseInt(tempSplit[0]);
+                                    nextSwitchTempMinutes = Integer.parseInt(tempSplit[1]);
+                                } else if (Integer.parseInt(tempSplit[0]) < nextSwitchTempHours) {
+                                    nextSwitchTemp = times.get(i);
+                                    nextSwitchTempHours = Integer.parseInt(tempSplit[0]);
+                                    nextSwitchTempMinutes = Integer.parseInt(tempSplit[1]);
+                                } else if (Integer.parseInt(tempSplit[0]) == nextSwitchTempHours && Integer.parseInt(tempSplit[1]) < nextSwitchTempMinutes) {
+                                    nextSwitchTemp = times.get(i);
+                                    nextSwitchTempHours = Integer.parseInt(tempSplit[0]);
+                                    nextSwitchTempMinutes = Integer.parseInt(tempSplit[1]);
+                                }
+                            }
+                        }
+                        if(!nextSwitchTemp.equals("")) {
+                            nextSwitch = nextSwitchTemp;
+                            foundSwitch = true;
+                        } else{
+                            foundSwitch = true;
+                        }
+                    } catch(Exception e) {
+                        System.err.println("Error from getdata" + e);
+                        //to prevent infinite loop
+                        foundSwitch = true;
+                    }
+                }
+            }).start();
+        while(!foundSwitch) {
+
+        }
+        return nextSwitch;
     }
 
     private void addDrawerItems() {

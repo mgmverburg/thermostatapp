@@ -88,7 +88,7 @@
             android:paddingBottom="40dp"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:textColor="@android:color/black"/>
+            android:textColor="#ffffff"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
             android:paddingBottom="40dp"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:textColor="@android:color/black"/>
+            android:textColor="#ffffff"/>
 
         <Button
             style="@style/btnplus"
